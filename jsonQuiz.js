@@ -15,7 +15,7 @@
     // GLOBAL:
     var $placeHolder = $('#quiz'),
         loadingGif = 'loading.gif',
-        dataSource = 'rugs.json',
+        dataSource = 'data.json',
         currentQuestion = 0,
         questionCount = 0,
         answerArray = [],
