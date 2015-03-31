@@ -5,6 +5,12 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
+### Bower
+Install with [Bower][bower]
+`bower install jquery-quiz-using-json`
+
+[bower]: http://bower.io/
+
 ### DEMO
 
 A basic js fiddle [demo](https://jsfiddle.net/Webby2014/t4p8x02b/)
@@ -47,4 +53,4 @@ __JQUERY__
 *   Abstract the rendered html question into templates for better customation
 *   Refactor json data for better clarity e.g "answers" should be "options" etc.
 *   ~~Add optional style sheets~~
-*   Configurate as bower package
+*   ~~Configurate as bower package~~
