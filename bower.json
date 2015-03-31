@@ -1,0 +1,21 @@
+{
+  "name": "jquery-quiz-using-json",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json",
+  "authors": [
+    "Matthew Webb <rybka.webb@gmail.com>"
+  ],
+  "description": "A jquery quiz for scoring multiple choice questions",
+  "main": "js\\jsonQuiz.js",
+  "keywords": [
+    "quiz"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
