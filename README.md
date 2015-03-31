@@ -46,5 +46,5 @@ __JQUERY__
 *   Convert jquery code into plugin and include settings on initialise
 *   Abstract the rendered html question into templates for better customation
 *   Refactor json data for better clarity e.g "answers" should be "options" etc.
-*   Add optional style sheets
-*   ~~Configurate as bower package~~
+*   ~~Add optional style sheets~~
+*   Configurate as bower package
