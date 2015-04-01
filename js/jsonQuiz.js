@@ -109,7 +109,8 @@
             _result.push('<h3> Quiz Complete </h3>');
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
-            _result.push('<div><img src="' + message.image + '"/></div>');
+			if(message.image) 
+				_result.push('<div><img src="' + message.image + '"/></div>');
             _result.push('<p>Your score was: ' + score + '</p>');
             _result.push('<p>Total questions: ' + questionCount + '</p>');
 
@@ -126,15 +127,15 @@
             });
             return message;
         };
-        // infomation rendering (after each question)
-        var infoHTML = function (introStr) {
+        // information rendering (after each question)
+        var infoHTML = function (infoStr) {
             var _info = [];
 
             var _buttonTxt = 'Next Question';
             if (questionCount === (currentQuestion + 1)) _buttonTxt = 'Finish Quiz';
 
             _info.push('<form id="quizForm">');
-            _info.push('<p>' + introStr + '</p>');
+            _info.push('<p>' + infoStr + '</p>');
             _info.push('<button id="nextQuestion" type="submit" class="btn btn-default">' + _buttonTxt + '</button>');
             _info.push('</form>');
 
@@ -177,10 +178,10 @@
             // get json
             var requestData = getQuizData(dataSource).then(function (data) {
 
-                // take a count of the number of questions:
+                // take a count of the number of questions
                 questionCount = data[0].questions.length;
 
-                // handles in memory json:
+                // handles in memory json
                 gotData = true;
                 inMemoryData = data;
 
@@ -190,7 +191,7 @@
             // show question
             if (gotData) {
 
-                setTimeout(function () { // unrequired timer.
+                setTimeout(function () { // timer NOT required
                     var content = getHTML(inMemoryData, currentQuestion);
                     return $placeHolder.html(content);
                 }, 500);
@@ -204,13 +205,14 @@
             }
 
             // error handler
-            requestData.fail(function (data) {
+            requestData.fail(function (error) {
+				console.log('Request data error: ' + error);
                 return $placeHolder.html("<p>Sorry, we are unable to retrieve the data for this quiz.</p>");
             });
 
         };
 
-        // EXPOSED API:
+        // EXPOSED API
         return {
             init: init,
             bindSubmit: bindSubmit
