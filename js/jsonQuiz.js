@@ -1,5 +1,5 @@
 /*
-      Version: 1.2.0
+      Version: 0.0.1
          Date: 11/03/2015
        Author: Matthew D Webb
       Website: http://www.searchlaboratory.com/
@@ -66,15 +66,15 @@
                             complete = false;
                             content = questionHTML(object.question, object.answers);
                             if (object.includeInfo){ 
-                            	infoMode = true
+                            	infoMode = true;
                             };
                         }
                     }
                 });
             });
             if (complete){ 
-            	content = resultHTML() 
-            };
+            	content = resultHTML();
+            }
             return content;
         };
 
@@ -114,8 +114,8 @@
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
 		if(message.image) {
-			_result.push('<div><img src="' + message.image + '"/></div>')
-		};
+			_result.push('<div><img src="' + message.image + '"/></div>');
+		}
             _result.push('<p>Your score was: ' + score + '</p>');
             _result.push('<p>Total questions: ' + questionCount + '</p>');
 
@@ -137,7 +137,9 @@
             var _info = [];
 
             var _buttonTxt = 'Next Question';
-            if (questionCount === (currentQuestion + 1)) _buttonTxt = 'Finish Quiz';
+            if (questionCount === (currentQuestion + 1)){
+            	_buttonTxt = 'Finish Quiz';
+            } 
 
             _info.push('<form id="quizForm">');
             _info.push('<p>' + infoStr + '</p>');
@@ -153,7 +155,7 @@
             var _question = '<p>' + questionStr + '</p>';
             var _buttonTxt = 'next';
             if (questionCount === (currentQuestion + 1) && infoMode){
-            	_buttonTxt = "Finish Quiz"
+            	_buttonTxt = "Finish Quiz";
             };
 
             var _button = '<button id="nextQuestion" type="submit" class="btn btn-default">' + _buttonTxt + '</button>';
