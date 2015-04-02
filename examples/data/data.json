@@ -230,25 +230,25 @@
             {
                 "title": "The Exhibitionist",
                 "description": "You are the king in your castle, and nothing will make you feel awkward in those four walls! You’re happy to walk around in the buff, go to the toilet with the door open, and you wouldn’t think twice about eating a slice of toast that you dropped on the floor. We congratulate you in your achievement, but advise you keep the curtains closed for your neighbour’s sake!",
-                "image": "/exhibitionist.png",
+                "image": "./img/the-end.jpg",
                 "minScore": 0
             },
             {
                 "title": "The Occasional Strutter",
                 "description": "You don’t mind doing the occasional strut in your underwear to retrieve your jeans from the dryer, but you’d rather avoid it. You follow the ten-second rule when food drops on the floor, and you aren’t scared of the weird noises coming from the pipes, but you are still to master going to the toilet with the door open. You are so close to being completely comfortable in your surroundings but there is still as little way to go. To help bridge the gap, take a look at our simple guide to making your house a home.",
-                "image": "/occasionalstrutter.png",
+                "image": "./img/the-end.jpg",
                 "minScore": 11
             },
             {
                 "title": "The Mad Dasher",
                 "description": "You will only ever show flesh in the mad dash between your bathroom and bedroom, when you’re sure nobody is around. You’re likely to have a place reserved on the sofa, but there isn’t a chance you know which draw the Sellotape is in, or what your neighbour’s name is. There is still a lot of work to be done before you’re truly settled. To help you along the way, take a look at our guide to making your house a home.",
-                "image": "/maddasher.png",
+                "image": "./img/the-end.jpg",
                 "minScore": 21
             },
             {
                 "title": "The Sock Lover",
                 "description": "You really don’t feel at home and you’re likely to feel risky just having your socks off! You don’t have a set spot on the sofa and you certainly don’t leave the door open when you go to the toilet. You have a long way to go before you will be hanging plants outside. Aside from cranking up the underfloor heating, start to feel comfy by checking out our guide to making your house a home.",
-                "image": "/socklover.png",
+                "image": "./img/the-end.jpg",
                 "minScore": 31
             }
         ]
