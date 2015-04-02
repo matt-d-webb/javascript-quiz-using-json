@@ -65,12 +65,16 @@
                         if (currentQuestion === index) {
                             complete = false;
                             content = questionHTML(object.question, object.answers);
-                            if (object.includeInfo) infoMode = true;
+                            if (object.includeInfo){ 
+                            	infoMode = true
+                            };
                         }
                     }
                 });
             });
-            if (complete) content = resultHTML();
+            if (complete){ 
+            	content = resultHTML() 
+            };
             return content;
         };
 
@@ -109,8 +113,9 @@
             _result.push('<h3> Quiz Complete </h3>');
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
-			if(message.image) 
-				_result.push('<div><img src="' + message.image + '"/></div>');
+		if(message.image) {
+			_result.push('<div><img src="' + message.image + '"/></div>')
+		};
             _result.push('<p>Your score was: ' + score + '</p>');
             _result.push('<p>Total questions: ' + questionCount + '</p>');
 
@@ -147,7 +152,9 @@
             var _form = ['<form id="quizForm">'];
             var _question = '<p>' + questionStr + '</p>';
             var _buttonTxt = 'next';
-            if (questionCount === (currentQuestion + 1) && infoMode) _buttonTxt = "Finish Quiz";
+            if (questionCount === (currentQuestion + 1) && infoMode){
+            	_buttonTxt = "Finish Quiz"
+            };
 
             var _button = '<button id="nextQuestion" type="submit" class="btn btn-default">' + _buttonTxt + '</button>';
 
