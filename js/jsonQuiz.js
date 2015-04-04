@@ -67,7 +67,7 @@
                             content = questionHTML(object.question, object.answers);
                             if (object.includeInfo){ 
                             	infoMode = true;
-                            };
+                            }
                         }
                     }
                 });
@@ -127,7 +127,9 @@
             var message = {};
             $(inMemoryData).each(function (index, object) {
                 $(object.results).each(function (index, object) {
-                    if (score >= object.minScore) message = object;
+                    if (score >= object.minScore){
+					message = object;
+				}
                 });
             });
             return message;
