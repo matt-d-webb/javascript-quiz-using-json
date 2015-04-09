@@ -13,15 +13,15 @@
     'use strict';
 
     // GLOBAL:
-    var $placeHolder = $('#quiz'),
-        loadingGif = 'loading.gif',
-        dataSource = 'data.json',
-        currentQuestion = 0,
-        questionCount = 0,
-        answerArray = [],
-        infoMode = false,
-        gotData = false,
-        inMemoryData = {};
+    var $placeHolder = $('#quiz');
+    var loadingGif = 'loading.gif';
+    var dataSource = 'data.json';
+    var currentQuestion = 0;
+    var questionCount = 0;
+    var answerArray = [];
+    var infoMode = false;
+    var gotData = false;
+    var inMemoryData = {};
 
     // QUIZ LOGIC:
     var quiz = function () {
@@ -44,14 +44,16 @@
         };
 
         var updateScore = function (userAnswer) {
-            console.log(userAnswer);
+            //console.log(userAnswer);
             answerArray.push(userAnswer);
         };
 
         var getHTML = function (data, currentQuestion) {
 
-            var content, complete = true;
+            var content = '';
+            var complete = true;
 
+            // FIXME: surely nested each loops are not required here?!
             $(data).each(function (index, object) {
 
                 $(object.questions).each(function (index, object) {
@@ -72,9 +74,12 @@
                     }
                 });
             });
+
+            // if we have reached the end of the quiz, render the final page:
             if (complete){ 
             	content = resultHTML();
             }
+
             return content;
         };
 
@@ -83,14 +88,19 @@
         var bindSubmit = function () {
 
             $(document).on('submit', 'form', function (event) {
+
                 event.preventDefault();
+
                 next(this);
+
+                // FIXME: re initialising the quiz plugin seems incorrect here:
                 quiz().init();
             });
         };
 
         // ITERATION LOGIC:
 
+        // FIXME: the use of $this is confusing, renaming required here.
         var next = function ($this) {
 
             if (infoMode) {
@@ -113,9 +123,12 @@
             _result.push('<h3> Quiz Complete </h3>');
             _result.push('<h4>' + message.title + '</h4>');
             _result.push('<p>' + message.description + '</p>');
-		if(message.image) {
-			_result.push('<div><img src="' + message.image + '"/></div>');
-		}
+
+            // FIXME: this does not prevent the image from attempting to render!
+    		if(message.image) {
+    			_result.push('<div><img src="' + message.image + '"/></div>');
+    		}
+
             _result.push('<p>Your score was: ' + score + '</p>');
             _result.push('<p>Total questions: ' + questionCount + '</p>');
 
@@ -125,20 +138,24 @@
         var resultMessage = function (score) {
 
             var message = {};
+
+            // FIXME: nested each statements surely not required here?
             $(inMemoryData).each(function (index, object) {
                 $(object.results).each(function (index, object) {
-                    if (score >= object.minScore){
-					message = object;
-				}
+                    if (score >= object.minScore) {
+					   message = object;
+				    }
                 });
             });
             return message;
         };
+
         // information rendering (after each question)
         var infoHTML = function (infoStr) {
-            var _info = [];
 
+            var _info = [];
             var _buttonTxt = 'Next Question';
+
             if (questionCount === (currentQuestion + 1)){
             	_buttonTxt = 'Finish Quiz';
             } 
@@ -150,6 +167,8 @@
 
             return _info.join('\n');
         };
+
+
         // question rendering
         var questionHTML = function (questionStr, $answers) {
 
