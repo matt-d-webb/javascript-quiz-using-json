@@ -115,7 +115,7 @@
 
         // final message
         var resultHTML = function () {
-
+            // ToDo: need a better way to render the HTML.
             var score = getScore();
             var message = resultMessage(score);
             var _result = [];
