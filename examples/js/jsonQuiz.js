@@ -64,7 +64,8 @@
                         if (currentQuestion === index) {
                             complete = false;
                             content = questionHTML(object.question, object.answers);
-                            if (object.includeInfo) infoMode = true;
+                            if (object.includeInfo) {
+                            	infoMode = true;
                         }
                     }
                 });
