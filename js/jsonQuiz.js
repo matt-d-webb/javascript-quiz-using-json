@@ -177,7 +177,7 @@
             var _buttonTxt = 'next';
             if (questionCount === (currentQuestion + 1) && infoMode){
             	_buttonTxt = "Finish Quiz";
-            };
+            }
 
             var _button = '<button id="nextQuestion" type="submit" class="btn btn-default">' + _buttonTxt + '</button>';
 
