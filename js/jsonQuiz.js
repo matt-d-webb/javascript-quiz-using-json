@@ -8,7 +8,7 @@
          Demo: https://jsfiddle.net/Webby2014/t4p8x02b/
  */
 
-( function ( $, undefined ) {
+( function ( $, document, undefined ) {
 
 	'use strict';
 
@@ -150,19 +150,19 @@
 		// information rendering (after each question)
 		var infoHTML = function ( infoStr ) {
 
-			var _info = [];
-			var _buttonTxt = 'Next Question';
+			var template = [];
+			var buttonTxt = 'Next Question';
 
 			if ( questionCount === ( currentQuestion + 1 ) ) {
-				_buttonTxt = 'Finish Quiz';
+				buttonTxt = 'Finish Quiz';
 			}
 
-			_info.push( '<form id="quizForm">' );
-			_info.push( '<p>' + infoStr + '</p>' );
-			_info.push( '<button id="nextQuestion" type="submit" class="btn btn-default">' + _buttonTxt + '</button>' );
-			_info.push( '</form>' );
+			template.push( '<form id="quizForm">' );
+			template.push( '<p>' + infoStr + '</p>' );
+			template.push( '<button id="nextQuestion" type="submit" class="btn btn-default">' + buttonTxt + '</button>' );
+			template.push( '</form>' );
 
-			return _info.join( '\n' );
+			return template.join( '\n' );
 		};
 
 
@@ -249,4 +249,4 @@
 	quiz().init();
 	quiz().bindSubmit();
 
-}( jQuery ) );
+}( jQuery, document ) );
