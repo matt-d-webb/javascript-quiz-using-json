@@ -14,7 +14,9 @@
   // Public Methods
   Quiz.prototype.start = function() {
 
-    fetchData(this.options.dataSource).then((data) => {
+    const url = this.options.dataSource;
+
+    fetchData.call(this, url).then((data) => {
       console.log('DATA', data);
     }).catch((error) => {
       console.log('ERROR', error);
