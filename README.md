@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json/badges/gpa.svg)](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json)
 
-This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/) 
+This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/)
 you can provide a list of questions and answers which will render to the user in sequence.
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
@@ -22,20 +22,20 @@ A basic js fiddle [demo](https://jsfiddle.net/Webby2014/t4p8x02b/)
 __JSON__
 
     {
-       "question": "How old is Madonna?",
+       "question": "What year was the film The Shawshank Redemption released?",
                 "includeInfo": true,
-                "info": "Madonna Louise Ciccone is an American singer, songwriter, actress, and businesswoman.",
+                "info": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
                 "answers": [
                     {
-                        "answer": "50",
+                        "answer": "1995",
                         "score": 0
                     },
                     {
-                        "answer": "54",
+                        "answer": "1994",
                         "score": 0
                     },
                     {
-                        "answer": "56",
+                        "answer": "1993",
                         "score": 5
                     }
                 ]

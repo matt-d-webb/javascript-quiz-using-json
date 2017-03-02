@@ -1,0 +1,31 @@
+{
+  "name": "jquery-quiz-using-json",
+  "version": "0.1.0",
+  "description": "A jquery quiz for scoring multiple choice questions",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt-Webb/jquery-quiz-using-json.git"
+  },
+  "keywords": [
+    "jquery",
+    "quiz",
+    "multiple",
+    "choice"
+  ],
+  "author": "Matthew D Webb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
+  },
+  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
+}

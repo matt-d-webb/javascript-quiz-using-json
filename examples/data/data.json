@@ -1,5 +1,4 @@
-[
-    {
+  {
         "questions": [
             {
                 "question": "Are you?",
@@ -253,4 +252,3 @@
             }
         ]
     }
-]
