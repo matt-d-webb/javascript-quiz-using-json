@@ -7,7 +7,7 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
   },
   "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme",
-  "dependencies": {
-    "jquery": "^3.1.1"
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
   }
 }
