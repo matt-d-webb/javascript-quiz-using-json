@@ -2,7 +2,6 @@
       Version: 0.0.1
          Date: 11/03/2015
        Author: Matthew D Webb
-      Website: http://www.searchlaboratory.com/
   Description: json quiz score calculator
  Dependencies: JQuery 2.1.0 (cdn here: https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js)
          Demo: https://jsfiddle.net/Webby2014/t4p8x02b/
