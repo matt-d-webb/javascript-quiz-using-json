@@ -15,7 +15,7 @@ Install with [Bower][bower]
 
 ### DEMO
 
-A basic js fiddle [demo](https://jsfiddle.net/Webby2014/t4p8x02b/)
+A basic js fiddle [demo](https://jsfiddle.net/u0u0fp9v/)
 
 ### EXAMPLE USE:
 
