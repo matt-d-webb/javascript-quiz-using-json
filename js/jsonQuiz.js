@@ -99,7 +99,7 @@
 		// ITERATION LOGIC:
 
 		var next = function ( data ) {
-
+			// TODO: create random sequence.
 			if ( infoMode ) {
 				var userAnswer = $( data ).serializeArray();
 				updateScore( userAnswer );
