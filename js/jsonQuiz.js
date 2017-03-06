@@ -51,7 +51,6 @@
 			var content = '';
 			var complete = true;
 
-			// FIXME: surely nested each loops are not required here?!
 			$( data ).each( function ( index, object ) {
 
 				$( object.questions ).each( function ( index, object ) {
@@ -91,7 +90,6 @@
 
 				next( this );
 
-				// FIXME: re initialising the quiz plugin seems incorrect here:
 				quiz().init();
 			} );
 		};
@@ -99,7 +97,7 @@
 		// ITERATION LOGIC:
 
 		var next = function ( data ) {
-			// TODO: create random sequence.
+
 			if ( infoMode ) {
 				var userAnswer = $( data ).serializeArray();
 				updateScore( userAnswer );
@@ -112,7 +110,7 @@
 
 		// final message
 		var resultHTML = function () {
-			// TODO: need a better way to render the HTML.
+
 			var score = getScore();
 			var message = resultMessage( score );
 			var template = [];
@@ -135,7 +133,6 @@
 
 			var message = {};
 
-			// FIXME: nested each statements surely not required here?
 			$( inMemoryData ).each( function ( index, object ) {
 				$( object.results ).each( function ( index, object ) {
 					if ( score >= object.minScore ) {
@@ -217,7 +214,7 @@
 			// show question
 			if ( gotData ) {
 
-				setTimeout( function () { // timer NOT required
+				setTimeout( function () {
 					var content = getHTML( inMemoryData, currentQuestion );
 					return $placeHolder.html( content );
 				}, 500 );
