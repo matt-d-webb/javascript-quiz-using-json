@@ -9,7 +9,7 @@
 
     'use strict';
 
-    const VERSION = '1.0.0';
+    const VERSION = '0.1.0';
 
     let Quiz;
 
@@ -85,7 +85,7 @@
         if (config.random) {
             randomiseQuestions(data);
         }
-        
+
         questionCount = data[0].questions.length;
 
         storedData = data;
