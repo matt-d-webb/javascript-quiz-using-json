@@ -2,226 +2,40 @@
     {
         "questions": [
             {
-                "question": "Are you?",
-                "includeInfo": true,
-                "info": "Men take less time to settle into a new house, taking a year and a half on average, compared to the 14.2 months it takes women.",
-                "answers": [
-                    {
-                        "answer": "Female",
-                        "score": 1
-                    },
-                    {
-                        "answer": "Male",
-                        "score": 2
-                    }
-                ]
-            },
-            {
-                "question": "Are you?",
-                "includeInfo": false,
-                "info": "Almost a third of 18-24 year-olds say they do not feel their house is a home. Less than a tenth of people over 55 agree.",
-                "answers": [
-                    {
-                        "answer": "18-24",
-                        "score": 4
-                    },
-                    {
-                        "answer": "25-44",
-                        "score": 3
-                    },
-                    {
-                        "answer": "45-54",
-                        "score": 2
-                    },
-                    {
-                        "answer": "55+",
-                        "score": 1
-                    }
-                ]
-            },
-            {
-                "question": "You drop a slice of toast on the floor. You...",
-                "includeInfo": true,
-                "info": "Men are twice as likely as women to feel that being able to eat food off the floor shows that their house is a home.",
-                "answers": [
-                    {
-                        "answer": "Pick it up straight away and chuck it in the bin ",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Think that anything under 10 seconds is ok, so you still eat it ",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Follow the five-second rule, it’s fair game!",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Blow off the dust and eat it no matter how long it has been there. It’s not going to kill me, is it?! ",
-                        "score": 1
-                    }
-                ]
+                "question": "Your favourite TV show is about to start. You...",
+                "info": "Having a set spot on the sofa matters the most to those between 35 and 44, and the least to people over 55.",
+                "options":
+                  [
+                    "See that your friends have taken all the seats. No worries, you’d rather sit on the floor than ask someone to move ",
+                    "Sit in the nearest free space, you’re not picky",
+                    "Run to your spot. Everybody knows that’s where you sit and that’s how it will stay. How would watching TV ever be the same sat somewhere different?",
+                    "See that someone is in the spot you like. You try to convince them to move, but give in and sit elsewhere"
+                  ],
+                "scores":
+                  [
+                    4,
+                    3,
+                    1,
+                    2
+                  ]
             },
             {
                 "question": "Your favourite TV show is about to start. You...",
-                "includeInfo": true,
                 "info": "Having a set spot on the sofa matters the most to those between 35 and 44, and the least to people over 55.",
-                "answers": [
-                    {
-                        "answer": "See that your friends have taken all the seats. No worries, you’d rather sit on the floor than ask someone to move ",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Sit in the nearest free space, you’re not picky ",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Run to your spot. Everybody knows that’s where you sit and that’s how it will stay. How would watching TV ever be the same sat somewhere different? ",
-                        "score": 1
-                    },
-                    {
-                        "answer": "See that someone is in the spot you like. You try to convince them to move, but give in and sit elsewhere ",
-                        "score": 2
-                    }
-                ]
-            },
-            {
-                "question": "You are in the house alone at night and hear a weird noise from downstairs. You...",
-                "includeInfo": true,
-                "info": "Not being scared of weird noises is a woman’s top indicator that her house is a home",
-                "answers": [
-                    {
-                        "answer": "Freak out and grab the baseball bat at the side of your bed ",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Roll over and go back to sleep. You know it is just the pipes ",
-                        "score": 1
-                    },
-                    {
-                        "answer": "Don’t think there’s anything to worry about, but you sleep with the lamp on just in case ",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Sit up straight away and get your partner or housemate to investigate ",
-                        "score": 3
-                    }
-                ]
-            },
-            {
-                "question": "You see your neighbour on your way to the front door. You...",
-                "includeInfo": true,
-                "info": "this is some content for question 6",
-                "answers": [
-                    {
-                        "answer": "Say hello, you are on first-name terms",
-                        "score": 1
-                    },
-                    {
-                        "answer": "Nod in acknowledgement, as you only know them by the nickname you have assigned them ",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Smile politely, as you have seen them a couple of times before",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Ignore them and go straight in the door without a moment of eye contact",
-                        "score": 4
-                    }
-                ]
-            },
-            {
-                "question": "You need to find the tape measure for a spot of DIY. You...",
-                "includeInfo": true,
-                "info": "People in Cambridge say that knowing their way around the cupboards is the true sign that their house has become a home. Across the country, only 10% of people agreed with this.",
-                "answers": [
-                    {
-                        "answer": "Know exactly where it is straight away ",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Think of a few places it could be and check them all ",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Vaguely remember seeing it, but to find it you need to overturn the house ",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Have absolutely no idea and decide it would be easier to buy a new one ",
-                        "score": 1
-                    }
-                ]
-            },
-            {
-                "question": "The bins are getting full. You...",
-                "includeInfo": true,
-                "info": "Only 6% of people placed any importance on knowing the bin schedule.",
-                "answers": [
-                    {
-                        "answer": "Know when your waste and recycling bins go out. You’ve never missed a collection ",
-                        "score": 1
-                    },
-                    {
-                        "answer": "Know when they are collected, but you always miss them ",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Know your waste bin collection day, but the recycling day is a mystery ",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Just leave them out all the time, in the hope someone will take them one day ",
-                        "score": 4
-                    }
-                ]
-            },
-            {
-                "question": "Your house smell is...",
-                "includeInfo": true,
-                "info": "??",
-                "answers": [
-                    {
-                        "answer": "Warm and comforting like home cooking ",
-                        "score": 1
-                    },
-                    {
-                        "answer": "Sterile like bleach and cleaning products ",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Stale like bin juice",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Non-existent, I don’t know what it smells like ",
-                        "score": 3
-                    }
-                ]
-            },
-            {
-                "question": "At Christmas you",
-                "includeInfo": true,
-                "info": "One in ten think that the best sign that your house has become a home, is when you have spent a Christmas there.",
-                "answers": [
-                    {
-                        "answer": "Spend it elsewhere, from start to finish  ",
-                        "score": 4
-                    },
-                    {
-                        "answer": "Wake up at your house but leave shortly after  ",
-                        "score": 3
-                    },
-                    {
-                        "answer": "Alternate between your house and others each year",
-                        "score": 2
-                    },
-                    {
-                        "answer": "Always spend it at your own house  ",
-                        "score": 1
-                    }
-                ]
+                "options":
+                  [
+                    "See that your friends have taken all the seats. No worries, you’d rather sit on the floor than ask someone to move ",
+                    "Sit in the nearest free space, you’re not picky",
+                    "Run to your spot. Everybody knows that’s where you sit and that’s how it will stay. How would watching TV ever be the same sat somewhere different?",
+                    "See that someone is in the spot you like. You try to convince them to move, but give in and sit elsewhere"
+                  ],
+                "scores":
+                  [
+                    4,
+                    3,
+                    1,
+                    2
+                  ]
             }
         ]
     },

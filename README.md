@@ -2,40 +2,29 @@
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json/badges/gpa.svg)](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json)
 
-This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/) 
+This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/)
 you can provide a list of questions and answers which will render to the user in sequence.
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
-### Bower
-Install with [Bower][bower]
-`bower install jquery-quiz-using-json`
-
-[bower]: http://bower.io/
-
-### DEMO
-
-A basic js fiddle [demo](https://jsfiddle.net/u0u0fp9v/)
 
 ### EXAMPLE USE:
 
 __JSON__
 
-    {
-       "question": "How old is Madonna?",
-                "includeInfo": true,
-                "info": "Madonna Louise Ciccone is an American singer, songwriter, actress, and businesswoman.",
-                "answers": [
+    { "question": "What year was the film The Shawshank Redemption released?",
+                "info": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+                "options": [
                     {
-                        "answer": "50",
+                        "answer": "1995",
                         "score": 0
                     },
                     {
-                        "answer": "54",
+                        "answer": "1994",
                         "score": 0
                     },
                     {
-                        "answer": "56",
+                        "answer": "1993",
                         "score": 5
                     }
                 ]
@@ -45,14 +34,18 @@ __HTML__
 
     <div id="quiz"></div>
 
-__JQUERY__
+__JAVASCRIPT__
 
-*Note:* this is not currently implimented as a plugin and therefore no initialisation is required just a reference to the `jsonQuiz.js` file.
+    Quiz.init();   
+
+__JQUERY__
 
 ### TO DO
 
-*   Convert jquery code into plugin and include settings on initialise
-*   Abstract the rendered html question into templates for better customation
-*   Refactor json data for better clarity e.g "answers" should be "options" etc.
-*   ~~Add optional style sheets~~
-*   ~~Configurate as bower package~~
+* [ ] Remove jQuery dependency
+* [ ] Abstract the rendered html question into templates for better customisation
+* [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
+* [x] Add optional style sheets
+* [x] Configurate as bower package
+* [ ] Remove Bower, Switch to npm
+* [ ] Add Tests
