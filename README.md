@@ -12,33 +12,28 @@ Each question can be assign a score against each option, this allows for a range
 
 __JSON__
 
-    { "question": "What year was the film The Shawshank Redemption released?",
-                "info": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-                "options": [
-                    {
-                        "answer": "1995",
-                        "score": 0
-                    },
-                    {
-                        "answer": "1994",
-                        "score": 0
-                    },
-                    {
-                        "answer": "1993",
-                        "score": 5
-                    }
-                ]
-    }
+      {
+          "question": "What year was the film The Terminator released?",
+          "info": "The Terminator is a 1984 American science fiction action film directed by James Cameron. It stars Arnold Schwarzenegger as the Terminator, a cyborg assassin sent back in time from 2029 to 1984 to kill Sarah Connor (Linda Hamilton), whose son will one day become a savior against machines in a post-apocalyptic future.",
+          "options":
+            [
+              "1982",
+              "1983",
+              "1984",
+              "1984"
+            ],
+          "scores":
+            [0,3,1,2]
+      }
 
 __HTML__
 
-    <div id="quiz"></div>
+    <div id="quizName"></div>
 
 __JAVASCRIPT__
 
-    Quiz.init();   
+    Quiz.init({ id: "quizName" });   
 
-__JQUERY__
 
 ### TO DO
 
