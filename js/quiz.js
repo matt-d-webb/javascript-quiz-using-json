@@ -21,6 +21,13 @@
         randomise: false
     }
 
+    let state = {
+        currentQuestion = 0,
+        questionCount = 0,
+        answers = [],
+        questionData = {}
+    };
+
     let currentQuestion = 0;
     let questionCount = 0;
     let answerArray = [];
@@ -38,6 +45,28 @@
 
     function getQuizData(url) {
         return $.getJSON(url);
+
+        // return new Promise(function(resolve, reject) {
+        //     const xhr = new XMLHttpRequest();
+        //     xhr.open('GET', url);
+        //     xhr.onload = function() {
+        //         if (this.status >= 200 && this.status < 300) {
+        //             resolve(xhr.response);
+        //         } else {
+        //             reject({
+        //                 status: this.status,
+        //                 statusText: xhr.statusText
+        //             });
+        //         }
+        //     };
+        //     xhr.onerror = function() {
+        //         reject({
+        //             status: this.status,
+        //             statusText: xhr.statusText
+        //         });
+        //     };
+        //     xhr.send();
+        // });
     }
 
     function incrementQuestion() {
@@ -48,6 +77,7 @@
         let score = 0;
 
         answers.forEach((answer) => {
+            console.log(answer);
             score += parseInt(answer[0].value, 10);
         });
         return score;
@@ -83,7 +113,8 @@
         if (!isValid(data)) return;
 
         if (config.random) {
-            randomiseQuestions(data);
+            // TODO: need a better way to do this:
+            storedData = randomiseQuestions(data);
         }
 
         questionCount = data[0].questions.length;
@@ -170,6 +201,7 @@
 
     function renderTemplate(html) {
         $(`#${config.id}`).html(html);
+        // document.createElement(html);
     }
 
     function bindSubmit() {
