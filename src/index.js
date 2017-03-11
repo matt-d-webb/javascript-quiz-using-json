@@ -3,4 +3,7 @@ export default class Quiz {
     this.name = args.name;
     this.score = 0;
   }
+  setName() {
+    return 'Matthew'
+  }
 }
