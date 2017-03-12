@@ -5,7 +5,7 @@
  Dependencies: JQuery 2.1.0 (cdn here: https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js)
  */
 
-(function(global, $, document) {
+(function(global, document) {
 
     'use strict';
 
@@ -19,13 +19,13 @@
         loadingGif: '../examples/img/loading.gif',
         id: 'quiz',
         randomise: false
-    }
+    };
 
     let state = {
-        currentQuestion = 0,
-        questionCount = 0,
-        answers = [],
-        questionData = {}
+        currentQuestion: 0,
+        questionCount: 0,
+        answers: [],
+        questionData: {}
     };
 
     let currentQuestion = 0;
@@ -44,29 +44,27 @@
     }
 
     function getQuizData(url) {
-        return $.getJSON(url);
-
-        // return new Promise(function(resolve, reject) {
-        //     const xhr = new XMLHttpRequest();
-        //     xhr.open('GET', url);
-        //     xhr.onload = function() {
-        //         if (this.status >= 200 && this.status < 300) {
-        //             resolve(xhr.response);
-        //         } else {
-        //             reject({
-        //                 status: this.status,
-        //                 statusText: xhr.statusText
-        //             });
-        //         }
-        //     };
-        //     xhr.onerror = function() {
-        //         reject({
-        //             status: this.status,
-        //             statusText: xhr.statusText
-        //         });
-        //     };
-        //     xhr.send();
-        // });
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function onload() {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+            xhr.onerror = function onerror() {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            };
+            xhr.send();
+        });
     }
 
     function incrementQuestion() {
@@ -97,12 +95,12 @@
     }
 
     function randomiseQuestions(questions) {
-        let m = questions.length,
+        let qs = questions.length,
             t, i;
-        while (m) {
-            i = Math.floor(Math.random() * m--);
-            t = questions[m];
-            questions[m] = array[i];
+        while (qs) {
+            i = Math.floor(Math.random() * qs--);
+            t = questions[qs];
+            questions[qs] = array[i];
             questions[i] = t;
         }
         return questions;
@@ -112,14 +110,15 @@
 
         if (!isValid(data)) return;
 
+        storedData = JSON.parse(data);
+
         if (config.random) {
             // TODO: need a better way to do this:
             storedData = randomiseQuestions(data);
         }
 
-        questionCount = data[0].questions.length;
+        questionCount = storedData[0].questions.length;
 
-        storedData = data;
         if (config.randomise) {
             randomiseQuestions();
         }
@@ -200,14 +199,19 @@
     // DOM interaction
 
     function renderTemplate(html) {
-        $(`#${config.id}`).html(html);
+        // $(`#${config.id}`).html(html);
         // document.createElement(html);
+        document.getElementById(config.id).innerHTML = html;
     }
 
     function bindSubmit() {
-        $(document).on('submit', 'form', function(event) {
+        document.addEventListener('submit', function(event) {
             event.preventDefault();
-            nextQuestion(this); // TODO: remove 'this'
+            if (event.target.id === 'quizForm') {
+               // callback();
+               var data = new FormData(document.getElementById('quizForm'));
+               console.log(data);
+            }
         });
     }
 
@@ -245,4 +249,4 @@
 
     return Quiz;
 
-}(window, jQuery, document));
+}(window, document));
