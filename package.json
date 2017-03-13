@@ -1,0 +1,30 @@
+{
+  "name": "jquery-quiz-using-json",
+  "version": "1.0.0",
+  "description": "JavaScript Quiz",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "jsdom": "^9.11.0",
+    "jsdom-global": "^2.1.1",
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt-Webb/jquery-quiz-using-json.git"
+  },
+  "author": "Matthew D Webb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
+  },
+  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme"
+}

@@ -21,16 +21,14 @@
 	};
 
 	let state = {
-		currentQuestion: 0,
-		questionCount: 0,
+    question: {
+      current: 0,
+      count: 0
+    },
 		answers: [],
-		questionData: {}
+		data: {}
 	};
 
-	let currentQuestion = 0;
-	let questionCount = 0;
-	let answerArray = [];
-	let storedData = {};
 
 	function extend( config, options ) {
 		for ( let i in options ) {
@@ -87,7 +85,7 @@
 
 	function getTemplate( data, currentQuestion ) {
 		let question = data[ 0 ].questions[ currentQuestion ];
-		if ( currentQuestion === questionCount ) {
+		if ( currentQuestion === state.question.count ) {
 			return end();
 		};
 		return questionTemplate( question.question, question.options );
@@ -109,18 +107,14 @@
 
 		if ( !isValid( data ) ) return;
 
-		storedData = JSON.parse( data );
+		state.data = JSON.parse( data );
 
 		if ( config.random ) {
 			// TODO: need a better way to do this:
-			storedData = randomiseQuestions( data );
+			state.data = randomiseQuestions( data );
 		}
 
-		questionCount = storedData[ 0 ].questions.length;
-
-		if ( config.randomise ) {
-			randomiseQuestions();
-		}
+		questionCount = state.data[ 0 ].questions.length;
 
 		// dynamic dom element needs a handler to the on click event:
 		bindSubmit();
@@ -129,20 +123,20 @@
 	}
 
 	function nextQuestion( data ) {
-		let template = getTemplate( storedData, currentQuestion );
-		if ( currentQuestion ) {
+		let template = getTemplate( state.data, state.question.count );
+		if ( state.question.current ) {
 			let userAnswer = $( data ).serializeArray()[ 0 ].value;
 			updateScore( {
 				answer: userAnswer
 			} );
 		}
-		currentQuestion += 1;
+		state.question.current += 1;
 		renderTemplate( template );
 	}
 
 	function end() {
-		let score = getScore( answerArray );
-		let message = resultMessage( score, storedData[ 1 ].results );
+		let score = getScore( stata.answers );
+		let message = resultMessage( score, state.data[ 1 ].results );
 
 		return `<h3>Quiz Complete</h3>
 								<h4>${message.title}</h4>
@@ -171,7 +165,7 @@
 
 	function questionTemplate( questionStr, options ) {
 
-		let isLastQuestion = ( questionCount === ( currentQuestion + 1 ) );
+		let isLastQuestion = ( state.question.count === ( state.question.current + 1 ) );
 		let template = `<form id="quizForm">
                           <div>PROGRESS BAR HERE</div>
 													<p>${questionStr}</p>`;
