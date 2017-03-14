@@ -64,10 +64,6 @@
 		} );
 	}
 
-	function incrementQuestion() {
-
-	}
-
 	function getScore( answers ) {
 		let score = 0;
 
