@@ -9,8 +9,10 @@
 	'use strict';
 
 	const VERSION = '0.1.0';
+	console.log('Quiz loaded', VERSION);
 
 	let Quiz;
+	let Test;
 
 	// configuration for the plugin, these can be overwritten in the initialisation function:
 	let config = {
@@ -28,7 +30,6 @@
 		answers: [],
 		data: {}
 	};
-
 
 	function extend( config, options ) {
 		for ( let i in options ) {
@@ -76,7 +77,7 @@
 
 	function updateScore( userAnswer ) {
 		// map data to friendlier data set.
-		answerArray.push( userAnswer );
+		state.answers.push( userAnswer );
 	}
 
 	function getTemplate( data, currentQuestion ) {
@@ -228,14 +229,40 @@
 	};
 
 	// --------------------------------------------------------------------//
-	// ------------------------------- API --------------------------------//
+	// ------------------------------- PRIVATE API ------------------------//
+	// --------------------------------------------------------------------//
+
+	TEST = {
+		_init: init,
+		_bindSubmit: bindSubmit,
+		_renderTemplater: renderTemplater,
+		_questionTemplate : _questionTemplate,
+		_informationTemplate: informationTemplate,
+		_resultMessage: resultMessage,
+		_end: end,
+		_start: start,
+		_nextQuestion: nextQuestion,
+		_randomiseQuestions: randomiseQuestions,
+		_getTemplate: getTemplate,
+		_updateScore: updateScore,
+		_getScore: getScore,
+		_getQuizData: getQuizData,
+		_isValid: isValid,
+		_extend: extend
+	}
+
+	// --------------------------------------------------------------------//
+	// ------------------------------- PUBLIC API -------------------------//
 	// --------------------------------------------------------------------//
 
 	Quiz = global.Quiz = {
 		VERSION,
 		init
-	}
+	};
 
-	return Quiz;
+	return {
+		Quiz,
+		TEST
+	};
 
 }( window, document ) );
