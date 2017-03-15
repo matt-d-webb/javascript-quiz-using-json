@@ -1,21 +1,22 @@
-
-const Quiz = require('../js/quiz');
+var window, document;
+var Quiz = require('../js/quiz');
 var mocha = require('mocha');
 var chai = require('chai');
 var expect = chai.expect;
 
 describe('Json Quiz', function() {
 
-  let quiz;
+  var quiz;
+  var window, document;
 
-  let config = {
+  var config = {
     dataSource: './data/valid.questions.json',
     loadingGif: null,
     id: 'quiz',
     randomise: false
   };
 
-  let state = {
+  var state = {
     question: {
       current: 0,
       count: 0
@@ -25,12 +26,23 @@ describe('Json Quiz', function() {
   };
 
   beforeEach(function() {
-    quiz = window.Quiz;
+    quiz = Quiz.__TEST__;
   })
 
   it('Should be defined', function() {
-      console.log(quiz, Quiz);
       expect(quiz).to.be.a('object');
   });
+
+  it('Should have a 10 methods', function() {
+
+  });
+
+  describe('Templates', function() {
+
+    
+
+
+
+  })
 
 });

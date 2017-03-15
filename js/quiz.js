@@ -12,7 +12,7 @@
 	console.log('Quiz loaded', VERSION);
 
 	let Quiz;
-	let Test;
+	let TEST;
 
 	// configuration for the plugin, these can be overwritten in the initialisation function:
 	let config = {
@@ -111,7 +111,7 @@
 			state.data = randomiseQuestions( data );
 		}
 
-		questionCount = state.data[ 0 ].questions.length;
+		state.question.count = state.data[ 0 ].questions.length;
 
 		// dynamic dom element needs a handler to the on click event:
 		bindSubmit();
@@ -132,14 +132,14 @@
 	}
 
 	function end() {
-		let score = getScore( stata.answers );
+		let score = getScore( state.answers );
 		let message = resultMessage( score, state.data[ 1 ].results );
 
 		return `<h3>Quiz Complete</h3>
 								<h4>${message.title}</h4>
 								<p>${message.description}</p>
 								<p>Your score was: ${score}</p>
-						 		<p>Total questions: ${questionCount}</p>`;
+						 		<p>Total questions: ${state.question.count}</p>`;
 	}
 
 	function resultMessage( score, result ) {
@@ -233,32 +233,35 @@
 	// --------------------------------------------------------------------//
 
 	TEST = {
-		_init: init,
-		_bindSubmit: bindSubmit,
-		_renderTemplater: renderTemplater,
-		_questionTemplate : _questionTemplate,
-		_informationTemplate: informationTemplate,
-		_resultMessage: resultMessage,
-		_end: end,
-		_start: start,
-		_nextQuestion: nextQuestion,
-		_randomiseQuestions: randomiseQuestions,
-		_getTemplate: getTemplate,
-		_updateScore: updateScore,
-		_getScore: getScore,
-		_getQuizData: getQuizData,
-		_isValid: isValid,
-		_extend: extend
+		init,
+		bindSubmit,
+		renderTemplate,
+		questionTemplate,
+		informationTemplate,
+		resultMessage,
+		end,
+		start,
+		nextQuestion,
+		randomiseQuestions,
+		getTemplate,
+		updateScore,
+		getScore,
+	  getQuizData,
+		isValid,
+		extend
 	}
 
 	// --------------------------------------------------------------------//
 	// ------------------------------- PUBLIC API -------------------------//
 	// --------------------------------------------------------------------//
-
 	Quiz = global.Quiz = {
 		VERSION,
 		init
 	};
+
+	// --- test-only ---------
+	Quiz.__TEST__ = TEST;
+	// --- end-test-only --------
 
 	return {
 		Quiz,
