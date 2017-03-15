@@ -1,4 +1,5 @@
-var window, document;
+require('jsdom-global')()
+
 var Quiz = require('../js/quiz');
 var mocha = require('mocha');
 var chai = require('chai');
@@ -39,10 +40,7 @@ describe('Json Quiz', function() {
 
   describe('Templates', function() {
 
-    
+  });
 
-
-
-  })
 
 });
