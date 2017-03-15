@@ -8,7 +8,6 @@ var expect = chai.expect;
 describe('Json Quiz', function() {
 
   var quiz;
-  var window, document;
 
   var config = {
     dataSource: './data/valid.questions.json',
@@ -27,19 +26,29 @@ describe('Json Quiz', function() {
   };
 
   beforeEach(function() {
-    quiz = Quiz.__TEST__;
+    quiz = window.Quiz.__TEST__;
   })
 
   it('Should be defined', function() {
       expect(quiz).to.be.a('object');
   });
 
-  it('Should have a 10 methods', function() {
-
+  it('Should have 16 private methods', function() {
+      expect(Object.keys(quiz).length).to.equal(16);
   });
 
   describe('Templates', function() {
+    it('questionTemplate() should return a string from', function() {
 
+        var data = { "question": "Valid Question 1 - four options",
+                        "info": "Information 1",
+                        "options":["Option 1","Option 2","Option 3","Option 4"],
+                        "scores":[4,3,1,2]};
+
+        var str = quiz.questionTemplate(data.question,data.options);
+        
+        expect(str).to.be.a('string');
+    })
   });
 
 

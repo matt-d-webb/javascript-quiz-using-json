@@ -9,7 +9,6 @@
 	'use strict';
 
 	const VERSION = '0.1.0';
-	console.log('Quiz loaded', VERSION);
 
 	let Quiz;
 	let TEST;
@@ -263,9 +262,6 @@
 	Quiz.__TEST__ = TEST;
 	// --- end-test-only --------
 
-	return {
-		Quiz,
-		TEST
-	};
+	return Quiz;
 
 }( window, document ) );
