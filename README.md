@@ -10,7 +10,9 @@ Each question can be assign a score against each option, this allows for a range
 
 ### EXAMPLE USE:
 
-__JSON__
+__EXAMPLE JSON__
+
+Here is a sample of the quiz question data:
 
       {
           "question": "What year was the film The Terminator released?",
@@ -28,11 +30,23 @@ __JSON__
 
 __HTML__
 
+    <!-- dom reference -->
     <div id="quizName"></div>
+
+    <!-- script -->
+    <script src="./jquery-quiz-using-json/dist/quiz.min.js"></script>
 
 __JAVASCRIPT__
 
+Initialise the quiz like so. Note this needs to be done after referencing the script shown above.
+
     Quiz.init({ id: "quizName" });   
+
+__HOW TO USE__
+
+```$ npm i ```
+
+```$ npm test ```
 
 
 ### TO DO
@@ -42,5 +56,5 @@ __JAVASCRIPT__
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
 * [x] Add optional style sheets
 * [x] Configurate as bower package
-* [ ] Remove Bower, Switch to npm
-* [ ] Add Tests
+* [x] Remove Bower, Switch to npm
+* [x] Add Tests

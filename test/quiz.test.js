@@ -7,27 +7,35 @@ var expect = chai.expect;
 
 describe('Json Quiz', function() {
 
-  var quiz;
-
-  var config = {
-    dataSource: './data/valid.questions.json',
-    loadingGif: null,
-    id: 'quiz',
-    randomise: false
-  };
-
-  var state = {
-    question: {
-      current: 0,
-      count: 0
-    },
-    answers: [2,3,1],
-    data: {}
-  };
+  var quiz, config, state, data;
 
   beforeEach(function() {
     quiz = window.Quiz.__TEST__;
-  })
+
+    config = {
+      dataSource: './data/valid.questions.json',
+      loadingGif: null,
+      id: 'quiz',
+      randomise: false
+    };
+
+    state = {
+      question: {
+        current: 0,
+        count: 0
+      },
+      answers: [2,3,1],
+      data: {}
+    };
+
+    data = [ { questions: {
+      question: "Valid Question 1 - four options",
+      info: "Information 1",
+      options:["Option 1","Option 2","Option 3","Option 4"],
+      scores:[4,3,1,2]
+    }}];
+
+  });
 
   describe('Quiz', function() {
 
@@ -45,14 +53,7 @@ describe('Json Quiz', function() {
 
     it('questionTemplate() should return a string from', function() {
 
-        var data = {
-          question: "Valid Question 1 - four options",
-          info: "Information 1",
-          options:["Option 1","Option 2","Option 3","Option 4"],
-          scores:[4,3,1,2]
-        };
-
-        var str = quiz.questionTemplate(data.question,data.options);
+        var str = quiz.questionTemplate(data[0].questions.question,data.options);
 
         expect(str).to.be.a('string');
     });
@@ -127,7 +128,9 @@ describe('Json Quiz', function() {
     });
 
     it('updateScore() should increment the correct score to the score array', function() {
+        quiz.updateScore(1000);
 
+        expect(state.answers).to.contain(1000);
     });
 
     it('isValid() should valid the json data', function() {
