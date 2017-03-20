@@ -30,10 +30,11 @@
 		data: {}
 	};
 
-	function extend( config, options ) {
+	function extend( defaults, options ) {
 		for ( let i in options ) {
-			config[ i ] = options[ i ];
+			defaults[ i ] = options[ i ];
 		}
+		return defaults;
 	}
 
 	function isValid( data ) {

@@ -46,20 +46,21 @@ describe('Json Quiz', function() {
                         "scores":[4,3,1,2]};
 
         var str = quiz.questionTemplate(data.question,data.options);
-        
+
         expect(str).to.be.a('string');
     });
     it('extend() should return an object with merged properties', function() {
-        
+
         var obj1 = { name: 'test', val: 2 };
         var obj2 = { name: 'test 2', other: 4 };
-      
+
         var extended = quiz.extend(obj1, obj2);
-      
-        expect(extended.name).to.be('test 2');
-        expect(extended.val).to.be(2);
-        expect(exetnded.other).to.be(4);
-    }
+
+        expect(extended).to.be.a('object');
+        expect(extended.name).to.equal('test 2');
+        expect(extended.val).to.equal(2);
+        expect(extended.other).to.equal(4);
+    });
   });
 
 
