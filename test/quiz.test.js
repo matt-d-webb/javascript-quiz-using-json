@@ -21,7 +21,7 @@ describe('Json Quiz', function() {
       current: 0,
       count: 0
     },
-    answers: [],
+    answers: [2,3,1],
     data: {}
   };
 
@@ -29,7 +29,7 @@ describe('Json Quiz', function() {
     quiz = window.Quiz.__TEST__;
   })
 
-  describe('Templates', function() {
+  describe('Quiz', function() {
 
     it('Should be defined', function() {
         expect(quiz).to.be.a('object');
@@ -121,7 +121,9 @@ describe('Json Quiz', function() {
     });
 
     it('getScore() should return the correct score', function() {
+        var score = quiz.getScore(state.answers);
 
+        expect(score).to.equal(6);
     });
 
     it('updateScore() should increment the correct score to the score array', function() {
@@ -129,7 +131,9 @@ describe('Json Quiz', function() {
     });
 
     it('isValid() should valid the json data', function() {
+        var isValid = quiz.isValid();
 
+        expect(isValid).to.be.true;
     });
 
   });

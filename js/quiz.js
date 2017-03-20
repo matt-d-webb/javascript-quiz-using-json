@@ -66,13 +66,8 @@
 	}
 
 	function getScore( answers ) {
-		let score = 0;
 
-		answers.forEach( ( answer ) => {
-			console.log( answer );
-			score += parseInt( answer[ 0 ].value, 10 );
-		} );
-		return score;
+		return answers.reduce((acc, val) => acc + val );
 	}
 
 	function updateScore( userAnswer ) {
