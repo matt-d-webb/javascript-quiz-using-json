@@ -7,6 +7,7 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
+### BETA 0.1.0
 
 ### EXAMPLE USE:
 
@@ -53,8 +54,14 @@ __HOW TO USE__
 
 * [ ] Remove jQuery dependency
 * [ ] Abstract the rendered html question into templates for better customisation
+* [ ] Add optional style sheets
+* [ ] Move TODOs to issues with need-help flag
+* [ ] Set up semvar
+* [ ] Update Travis Build
+* [ ] Add module bundler
+* [ ] Add test coverage badge
+* [ ] Add Automated Acceptance Tests
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
-* [x] Add optional style sheets
 * [x] Configurate as bower package
 * [x] Remove Bower, Switch to npm
-* [x] Add Tests
+* [x] Add Unit Tests
