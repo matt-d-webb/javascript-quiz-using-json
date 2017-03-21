@@ -83,7 +83,7 @@
     function getTemplate(data, currentQuestion) {
         let question = data[0].questions[currentQuestion];
         if (currentQuestion === state.question.count) {
-            return end();
+            end();
         };
         return questionTemplate(question.question, question.options);
     }
@@ -132,7 +132,7 @@
         renderTemplate(template, config.id);
     }
 
-    function end() {
+    function end(state) {
         let score = getScore(state.answers);
         let message = resultMessage(score, state.data[1].results);
 

@@ -24,15 +24,6 @@ describe('javascript-quiz-using-json', function() {
       randomise: false
     };
 
-    state = {
-      question: {
-        current: 0,
-        count: 0
-      },
-      answers: [2,3,1],
-      data: {}
-    };
-
     data = [{ questions: [{
       question: "Valid Question 1 - four options",
       info: "Information 1",
@@ -43,8 +34,27 @@ describe('javascript-quiz-using-json', function() {
       info: "Information 2",
       options:["Option 1","Option 2","Option 3","Option 4"],
       scores:[4,3,1,2]
-    }]}];
+    }]},{
+          results:[{
+              title: "",
+              description: "",
+              minScore: 0 },
+            {
+              title: "",
+              description: "",
+              image: "",
+              minScore: 11
+            }]
+        }];
 
+    state = {
+        question: {
+          current: 0,
+          count: 0
+        },
+        answers: [2,3,1],
+        data: data
+      };
   });
 
   after(function () {
@@ -134,6 +144,10 @@ describe('javascript-quiz-using-json', function() {
 
     it('end() should clear all question array data', function() {
         expect(quiz.end).to.be.a('function');
+
+        let end = quiz.end(state);
+
+        expect(end).to.be.a('string');
     });
 
     it('bindSubmit() should add an event listener to the DOM', function() {
@@ -197,6 +211,13 @@ describe('javascript-quiz-using-json', function() {
     it('isValid() should valid the json data', function() {
         var isValid = quiz.isValid();
         expect(isValid).to.be.true;
+    });
+
+    it('randomiseQuestions() should return a different array order', function() {
+        var randomiseArray = quiz.randomiseQuestions([1,2,3,4,5,6]);
+
+        expect(randomiseArray).to.be.an('array');
+        expect(randomiseArray.length).to.equal(6);
     });
 
   });
