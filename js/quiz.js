@@ -91,7 +91,7 @@
         while (qs) {
             i = Math.floor(Math.random() * qs--);
             t = questions[qs];
-            questions[qs] = array[i];
+            questions[qs] = questions[i];
             questions[i] = t;
         }
         return questions;
