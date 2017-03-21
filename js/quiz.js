@@ -1,271 +1,270 @@
 /*
-      Version: 0.2.0
+      Version: 0.2.0-alpha
        Author: Matthew D Webb
   Description: json quiz score calculator
  */
+(function(global, document) {
 
-( function ( global, document ) {
+    'use strict';
 
-	'use strict';
+    const VERSION = '0.2.0-alpha';
 
-	const VERSION = '0.2.0';
+    let Quiz;
+    let TEST;
 
-	let Quiz;
-	let TEST;
+    // configuration for the plugin, these can be overwritten in the initialisation function:
+    let config = {
+        dataSource: null,
+        loadingGif: null,
+        seedData: '',
+        id: 'quiz',
+        randomise: false,
+        seed: false
+    };
 
-	// configuration for the plugin, these can be overwritten in the initialisation function:
-	let config = {
-		dataSource: null,
-		loadingGif: null,
-		seedData: '',
-		id: 'quiz',
-		randomise: false,
-		seed: false
-	};
+    let state = {
+        question: {
+            current: 0,
+            count: 0
+        },
+        answers: [],
+        data: {}
+    };
 
-	let state = {
-    question: {
-      current: 0,
-      count: 0
-    },
-		answers: [],
-		data: {}
-	};
+    // TODO: update with ES6 Symbol! :-)
+    function extend(defaults, options) {
+        for (let i in options) {
+            defaults[i] = options[i];
+        }
+        return defaults;
+    }
 
-	// TODO: update with ES6 Symbol! :-)
-	function extend( defaults, options ) {
-		for ( let i in options ) {
-			defaults[ i ] = options[ i ];
-		}
-		return defaults;
-	}
+    // TODO: validate JSON and provide user friendly messages.
+    function isValid(data) {
+        return true;
+    }
 
-	// TODO: validate JSON and provide user friendly messages.
-	function isValid( data ) {
-		return true;
-	}
+    function getQuizData(url) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onload = function onload() {
+                if (this.status >= 200 && this.status < 300) {
+                    resolve(xhr.response);
+                } else {
+                    reject({
+                        status: this.status,
+                        statusText: xhr.statusText
+                    });
+                }
+            };
+            xhr.onerror = function onerror() {
+                reject({
+                    status: this.status,
+                    statusText: xhr.statusText
+                });
+            };
+            xhr.send();
+        });
+    }
 
-	function getQuizData( url ) {
-		return new Promise( ( resolve, reject ) => {
-			const xhr = new XMLHttpRequest();
-			xhr.open( 'GET', url );
-			xhr.onload = function onload() {
-				if ( this.status >= 200 && this.status < 300 ) {
-					resolve( xhr.response );
-				} else {
-					reject( {
-						status: this.status,
-						statusText: xhr.statusText
-					} );
-				}
-			};
-			xhr.onerror = function onerror() {
-				reject( {
-					status: this.status,
-					statusText: xhr.statusText
-				} );
-			};
-			xhr.send();
-		} );
-	}
+    function getScore(answers) {
+        return answers.reduce((acc, val) => acc + val);
+    }
 
-	function getScore( answers ) {
-		return answers.reduce((acc, val) => acc + val );
-	}
+    function updateScore(userAnswer) {
+        // map data to friendlier data set.
+        state.answers.push(userAnswer);
+    }
 
-	function updateScore( userAnswer ) {
-		// map data to friendlier data set.
-		state.answers.push( userAnswer );
-	}
+    function getTemplate(data, currentQuestion) {
+        let question = data[0].questions[currentQuestion];
+        if (currentQuestion === state.question.count) {
+            return end();
+        };
+        return questionTemplate(question.question, question.options);
+    }
 
-	function getTemplate( data, currentQuestion ) {
-		let question = data[ 0 ].questions[ currentQuestion ];
-		if ( currentQuestion === state.question.count ) {
-			return end();
-		};
-		return questionTemplate( question.question, question.options );
-	}
+    function randomiseQuestions(questions) {
+        let qs = questions.length,
+            t, i;
+        while (qs) {
+            i = Math.floor(Math.random() * qs--);
+            t = questions[qs];
+            questions[qs] = array[i];
+            questions[i] = t;
+        }
+        return questions;
+    }
 
-	function randomiseQuestions( questions ) {
-		let qs = questions.length,
-			t, i;
-		while ( qs ) {
-			i = Math.floor( Math.random() * qs-- );
-			t = questions[ qs ];
-			questions[ qs ] = array[ i ];
-			questions[ i ] = t;
-		}
-		return questions;
-	}
+    function start(data) {
 
-	function start( data ) {
+        if (!isValid(data)) return;
 
-		if ( !isValid( data ) ) return;
+        //
+        state.data = JSON.parse(data);
 
-		//
-		state.data = JSON.parse( data );
+        if (config.random === true) {
+            state.data = randomiseQuestions(data);
+        }
 
-		if ( config.random === true ) {
-			state.data = randomiseQuestions( data );
-		}
+        state.question.count = state.data[0].questions.length;
 
-		state.question.count = state.data[ 0 ].questions.length;
+        // dynamic dom element needs a handler to the on click event:
+        bindSubmit();
 
-		// dynamic dom element needs a handler to the on click event:
-		bindSubmit();
+        return nextQuestion(data);
+    }
 
-		return nextQuestion( data );
-	}
+    function nextQuestion(data) {
+        let template = getTemplate(state.data, state.question.count);
+        if (state.question.current) {
+            let userAnswer = $(data).serializeArray()[0].value;
+            updateScore({
+                answer: userAnswer
+            });
+        }
+        state.question.current += 1;
+        renderTemplate(template);
+    }
 
-	function nextQuestion( data ) {
-		let template = getTemplate( state.data, state.question.count );
-		if ( state.question.current ) {
-			let userAnswer = $( data ).serializeArray()[ 0 ].value;
-			updateScore( {
-				answer: userAnswer
-			} );
-		}
-		state.question.current += 1;
-		renderTemplate( template );
-	}
+    function end() {
+        let score = getScore(state.answers);
+        let message = resultMessage(score, state.data[1].results);
 
-	function end() {
-		let score = getScore( state.answers );
-		let message = resultMessage( score, state.data[ 1 ].results );
-
-		return `<h3>Quiz Complete</h3>
+        return `<h3>Quiz Complete</h3>
 								<h4>${message.title}</h4>
 								<p>${message.description}</p>
 								<p>Your score was: ${score}</p>
 						 		<p>Total questions: ${state.question.count}</p>`;
-	}
+    }
 
-	function resultMessage( score, result ) {
-		let message = {};
+    function resultMessage(score, result) {
+        let message = {};
 
-		result.forEach( ( data ) => {
-			if ( score >= data.minScore ) {
-				message = data;
-			}
-		} );
-		return message;
-	}
+        result.forEach((data) => {
+            if (score >= data.minScore) {
+                message = data;
+            }
+        });
+        return message;
+    }
 
-	function informationTemplate( infoStr, isLast ) {
-		return `<form id="quizForm">
+    function informationTemplate(infoStr, isLast) {
+        return `<form id="quizForm">
 									<p>${infoStr}</p>
 									<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Final Quiz" : "Next Question" }</button>
 								</form>`;
-	}
+    }
 
-	function questionTemplate( questionStr, options ) {
+    function questionTemplate(questionStr, options) {
 
-		let isLastQuestion = ( state.question.count === ( state.question.current + 1 ) );
-		let template = `<form id="quizForm">
+        let isLastQuestion = (state.question.count === (state.question.current + 1));
+        let template = `<form id="quizForm">
                           <div>PROGRESS BAR HERE</div>
 													<p>${questionStr}</p>`;
 
-		// html radio buttons.
-		// NOTE: that the index value is the reference used to determine the score:
-		options.forEach( ( option, index ) => {
-			template += `<div class="radio">
+        // html radio buttons.
+        // NOTE: that the index value is the reference used to determine the score:
+        options.forEach((option, index) => {
+            template += `<div class="radio">
 											<label>
 												<input type="radio" name="quizAnswer" required value="${index}">
 												${option}
 											</label>
 										</div>`;
-		} );
+        });
 
-		template += `<button id="nextQuestion" type="submit" class="btn btn-default">
+        template += `<button id="nextQuestion" type="submit" class="btn btn-default">
 											${ isLastQuestion ? "Finish Quiz" : "Next" }
 									</button>
 								</form>`;
 
-		return template;
-	};
+        return template;
+    };
 
-	// DOM interaction
+    // DOM interaction
 
-	function renderTemplate( html ) {
-		document.getElementById( config.id ).innerHTML = html;
-	}
+    function renderTemplate(html) {
+        document.getElementById(config.id).innerHTML = html;
+    }
 
-	// FIXME: needs to dynamically bind a form submit event on the document:
-	function bindSubmit() {
-		document.addEventListener( 'submit', function ( event ) {
-			event.preventDefault();
-			if ( event.target.id === 'quizForm' ) {
-				let data = new FormData( document.getElementById( 'quizForm' ) );
+    // FIXME: needs to dynamically bind a form submit event on the document:
+    function bindSubmit() {
+        document.addEventListener('submit', function(event) {
+            event.preventDefault();
+            if (event.target.id === 'quizForm') {
+                let data = new FormData(document.getElementById('quizForm'));
 
-			}
-		} );
-	}
+            }
+        });
+    }
 
-	// INITIALISE THE QUIZ:
+    // INITIALISE THE QUIZ:
 
-	function init( options ) {
+    function init(options) {
 
-		// extend all default options:
-		extend( config, options );
+        // extend all default options:
+        extend(config, options);
 
-		// will allow the quiz to be run with seed example data:
-		if( config.seed === true && config.dataSource !== null ) {
-				config.dataSource = config.seedData;
-		}
+        // will allow the quiz to be run with seed example data:
+        if (config.seed === true && config.dataSource !== null) {
+            config.dataSource = config.seedData;
+        }
 
-		// get json
-		getQuizData( config.dataSource )
-			.then( success, error );
+        // get json
+        getQuizData(config.dataSource)
+            .then(success, error);
 
-		function success( data ) {
-			start( data, 0 );
-		}
+        function success(data) {
+            start(data, 0);
+        }
 
-		function error( err ) {
-			return renderTemplate(
-				`
+        function error(err) {
+            return renderTemplate(
+                `
 				<p>Sorry, we are unable to retrieve the data for this quiz.</p>
 				<small>${err}</small>
 				 `
-			);
-		}
-	};
+            );
+        }
+    };
 
-	// --------------------------------------------------------------------//
-	// ------------------------------- PRIVATE API ------------------------//
-	// --------------------------------------------------------------------//
+    // --------------------------------------------------------------------//
+    // ------------------------------- PRIVATE API ------------------------//
+    // --------------------------------------------------------------------//
 
-	TEST = {
-		init,
-		bindSubmit,
-		renderTemplate,
-		questionTemplate,
-		informationTemplate,
-		resultMessage,
-		end,
-		start,
-		nextQuestion,
-		randomiseQuestions,
-		getTemplate,
-		updateScore,
-		getScore,
-	  getQuizData,
-		isValid,
-		extend
-	};
+    TEST = {
+        init,
+        bindSubmit,
+        renderTemplate,
+        questionTemplate,
+        informationTemplate,
+        resultMessage,
+        end,
+        start,
+        nextQuestion,
+        randomiseQuestions,
+        getTemplate,
+        updateScore,
+        getScore,
+        getQuizData,
+        isValid,
+        extend
+    };
 
-	// --------------------------------------------------------------------//
-	// ------------------------------- PUBLIC API -------------------------//
-	// --------------------------------------------------------------------//
-	Quiz = global.Quiz = {
-		VERSION,
-		init
-	};
+    // --------------------------------------------------------------------//
+    // ------------------------------- PUBLIC API -------------------------//
+    // --------------------------------------------------------------------//
+    Quiz = global.Quiz = {
+        VERSION,
+        init
+    };
 
-	// --- test-only ---------
-	Quiz.__TEST__ = TEST;
-	// --- end-test-only --------
+    // --- test-only ---------
+    Quiz.__TEST__ = TEST;
+    // --- end-test-only --------
 
-	return Quiz;
+    return Quiz;
 
-} ( window, document ) );
+}(window, document));
