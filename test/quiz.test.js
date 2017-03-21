@@ -187,7 +187,7 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('getQuizData() should return a array for JSON data from a HTTP request', function() {
-        let promise = quiz.getQuizData(config.dataSource);
+        var promise = quiz.getQuizData(config.dataSource);
         // TODO: needs to test a promise and xhr request!
 
         promise.then(function(data) {
@@ -195,7 +195,6 @@ describe('javascript-quiz-using-json', function() {
         }).catch(function(error) {
           expect(error).to.be.defined;
         })
-
     });
 
     it('getScore() should return the correct score', function() {
