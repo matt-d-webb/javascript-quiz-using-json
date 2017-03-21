@@ -2,7 +2,7 @@
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json)
 [![MIT License](https://img.shields.io/npm/l/starwars-names.svg?style=flat-square)](http://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json.svg?branch=master)](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json)
+[![Build Status](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json)
 
 This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/)
 you can provide a list of questions and answers which will render to the user in sequence.
@@ -45,7 +45,7 @@ __JAVASCRIPT__
 
 Initialise the quiz like so. Note this needs to be done after referencing the script shown above.
 
-    Quiz.init({ id: "quizName" });   
+    Quiz.init({ id: "quizName" });  
 
 __HOW TO USE__
 

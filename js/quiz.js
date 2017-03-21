@@ -1,5 +1,5 @@
 /*
-      Version: 0.1.0
+      Version: 0.2.0
        Author: Matthew D Webb
   Description: json quiz score calculator
  */
@@ -15,10 +15,12 @@
 
 	// configuration for the plugin, these can be overwritten in the initialisation function:
 	let config = {
-		dataSource: '../examples/data/data.json',
-		loadingGif: '../examples/img/loading.gif',
+		dataSource: null,
+		loadingGif: null,
+		seedData: '',
 		id: 'quiz',
-		randomise: false
+		randomise: false,
+		seed: false
 	};
 
 	let state = {
@@ -30,6 +32,7 @@
 		data: {}
 	};
 
+	// TODO: update with ES6 Symbol! :-)
 	function extend( defaults, options ) {
 		for ( let i in options ) {
 			defaults[ i ] = options[ i ];
@@ -37,6 +40,7 @@
 		return defaults;
 	}
 
+	// TODO: validate JSON and provide user friendly messages.
 	function isValid( data ) {
 		return true;
 	}
@@ -66,7 +70,6 @@
 	}
 
 	function getScore( answers ) {
-
 		return answers.reduce((acc, val) => acc + val );
 	}
 
@@ -99,10 +102,10 @@
 
 		if ( !isValid( data ) ) return;
 
+		//
 		state.data = JSON.parse( data );
 
-		if ( config.random ) {
-			// TODO: need a better way to do this:
+		if ( config.random === true ) {
 			state.data = randomiseQuestions( data );
 		}
 
@@ -166,11 +169,11 @@
 		// NOTE: that the index value is the reference used to determine the score:
 		options.forEach( ( option, index ) => {
 			template += `<div class="radio">
-														<label>
-															<input type="radio" name="quizAnswer" required value="${index}">
-															${option}
-														</label>
-													</div>`;
+											<label>
+												<input type="radio" name="quizAnswer" required value="${index}">
+												${option}
+											</label>
+										</div>`;
 		} );
 
 		template += `<button id="nextQuestion" type="submit" class="btn btn-default">
@@ -184,18 +187,16 @@
 	// DOM interaction
 
 	function renderTemplate( html ) {
-		// $(`#${config.id}`).html(html);
-		// document.createElement(html);
 		document.getElementById( config.id ).innerHTML = html;
 	}
 
+	// FIXME: needs to dynamically bind a form submit event on the document:
 	function bindSubmit() {
 		document.addEventListener( 'submit', function ( event ) {
 			event.preventDefault();
 			if ( event.target.id === 'quizForm' ) {
-				// callback();
-				var data = new FormData( document.getElementById( 'quizForm' ) );
-				console.log( data );
+				let data = new FormData( document.getElementById( 'quizForm' ) );
+
 			}
 		} );
 	}
@@ -207,6 +208,11 @@
 		// extend all default options:
 		extend( config, options );
 
+		// will allow the quiz to be run with seed example data:
+		if( config.seed === true && config.dataSource !== null ) {
+				config.dataSource = config.seedData;
+		}
+
 		// get json
 		getQuizData( config.dataSource )
 			.then( success, error );
@@ -217,8 +223,10 @@
 
 		function error( err ) {
 			return renderTemplate(
-				`<p>Sorry, we are unable to retrieve the data for this quiz.</p>
-																		<small>${err}</small>`
+				`
+				<p>Sorry, we are unable to retrieve the data for this quiz.</p>
+				<small>${err}</small>
+				 `
 			);
 		}
 	};
@@ -244,7 +252,7 @@
 	  getQuizData,
 		isValid,
 		extend
-	}
+	};
 
 	// --------------------------------------------------------------------//
 	// ------------------------------- PUBLIC API -------------------------//
@@ -260,4 +268,4 @@
 
 	return Quiz;
 
-}( window, document ) );
+} ( window, document ) );
