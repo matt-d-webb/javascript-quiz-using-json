@@ -60,7 +60,7 @@ describe('Json Quiz', function() {
 
     it('getTemplate() should return a valid template', function() {
 
-      var template = quiz.getTemplate(data);
+      var template = quiz.getTemplate();
 
     });
 
