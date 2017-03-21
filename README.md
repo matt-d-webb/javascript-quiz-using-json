@@ -8,9 +8,9 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
-### ALPA (v0.2.0)
+### ALPHA (v0.2.0)
 
-This project is currently in ALPA and activity being worked on. Contributions are welcome!
+This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
 #### EXAMPLE USE:
 
