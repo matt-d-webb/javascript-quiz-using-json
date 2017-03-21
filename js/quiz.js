@@ -16,10 +16,10 @@
     let config = {
         dataSource: null,
         loadingGif: null,
-        seedData: '',
+        seedData: './data/data.json',
         id: 'quiz',
         randomise: false,
-        seed: false
+        seed: true
     };
 
     let state = {
@@ -119,10 +119,11 @@
     function nextQuestion(data) {
         let template = getTemplate(state.data, state.question.count);
         if (state.question.current) {
-            let userAnswer = $(data).serializeArray()[0].value;
-            updateScore({
-                answer: userAnswer
-            });
+            let userAnswer = data; // $(data).serializeArray()[0].value;
+            // updateScore({
+            //     answer: userAnswer
+            // });
+						console.log(data);
         }
         state.question.current += 1;
         renderTemplate(template);
@@ -191,11 +192,9 @@
 
     // FIXME: needs to dynamically bind a form submit event on the document:
     function bindSubmit() {
-        document.addEventListener('submit', function(event) {
-            event.preventDefault();
-            if (event.target.id === 'quizForm') {
-                let data = new FormData(document.getElementById('quizForm'));
-
+        document.addEventListener('click', function(event) {
+            if (event) {
+                // let data = new FormData(document.getElementById('quizForm'));
             }
         });
     }
@@ -208,7 +207,7 @@
         extend(config, options);
 
         // will allow the quiz to be run with seed example data:
-        if (config.seed === true && config.dataSource !== null) {
+        if (config.seed === true) {
             config.dataSource = config.seedData;
         }
 
@@ -235,6 +234,7 @@
     // --------------------------------------------------------------------//
 
     TEST = {
+				state,
         init,
         bindSubmit,
         renderTemplate,

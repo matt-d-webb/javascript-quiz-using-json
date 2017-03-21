@@ -1,37 +1,38 @@
 {
-    "name": "javascript-quiz-using-json",
-    "version": "0.2.0",
-    "description": "JavaScript Quiz",
-    "main": "index.js",
-    "scripts": {
-        "test": "mocha",
-        "validate": "npm run cover && npm run check-coverage",
-        "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-        "report-coverage": "cat ./coverage/lcov.info | codecov",
-        "cover": "nyc --reporter=lcov npm t"
-    },
-    "directories": {
-        "example": "examples",
-        "test": "test"
-    },
-    "dependencies": {},
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "jsdom": "9.12.0",
-        "jsdom-global": "2.1.1",
-        "mocha": "^3.2.0",
-        "codecov": "1.0.1",
-        "npm-run-all": "2.3.0",
-        "nyc": "7.1.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Matt-Webb/jquery-quiz-using-json.git"
-    },
-    "author": "Matthew D Webb",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
-    },
-    "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme"
+  "name": "javascript-quiz-using-json",
+  "version": "0.2.0",
+  "description": "JavaScript Quiz",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "validate": "npm run cover && npm run check-coverage",
+    "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "cover": "nyc --reporter=lcov npm t"
+  },
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "codecov": "1.0.1",
+    "jsdom": "9.12.0",
+    "jsdom-global": "2.1.1",
+    "mocha": "^3.2.0",
+    "npm-run-all": "2.3.0",
+    "nyc": "7.1.0",
+    "sinon": "^2.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matt-Webb/jquery-quiz-using-json.git"
+  },
+  "author": "Matthew D Webb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
+  },
+  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme"
 }

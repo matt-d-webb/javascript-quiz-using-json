@@ -3,6 +3,7 @@ require('jsdom-global')()
 var Quiz = require('../js/quiz');
 var mocha = require('mocha');
 var chai = require('chai');
+var sinon = require('sinon');
 var expect = chai.expect;
 
 describe('Json Quiz', function() {
@@ -28,12 +29,17 @@ describe('Json Quiz', function() {
       data: {}
     };
 
-    data = [ { questions: {
+    data = [{ questions: [{
       question: "Valid Question 1 - four options",
       info: "Information 1",
       options:["Option 1","Option 2","Option 3","Option 4"],
       scores:[4,3,1,2]
-    }}];
+    },{
+      question: "Valid Question 2 - four options",
+      info: "Information 2",
+      options:["Option 1","Option 2","Option 3","Option 4"],
+      scores:[4,3,1,2]
+    }]}];
 
   });
 
@@ -44,7 +50,7 @@ describe('Json Quiz', function() {
     });
 
     it('Should have 16 private methods', function() {
-        expect(Object.keys(quiz).length).to.equal(16);
+        expect(Object.keys(quiz).length).to.equal(17);
     });
 
   });
@@ -53,19 +59,34 @@ describe('Json Quiz', function() {
 
     it('questionTemplate() should return a string from', function() {
 
-        var str = quiz.questionTemplate(data[0].questions.question,data.options);
+        var questions = {
+          question: "Valid Question 1 - four options",
+          info: "Information 1",
+          options:["Option 1","Option 2","Option 3","Option 4"],
+          scores:[4,3,1,2]
+        };
+
+        var str = quiz.questionTemplate(questions.question, questions.options);
 
         expect(str).to.be.a('string');
     });
 
     it('getTemplate() should return a valid template', function() {
 
-      var template = quiz.getTemplate();
+      var template = quiz.getTemplate(data, 1);
 
+      expect(template).to.be.a('string');
     });
 
     it('resultMessage() should return a summarised html message with the correct data', function() {
 
+      var result = [{ minScore: 5, value: 'low'},{ minScore: 10, value: 'medium'}, { minScore: 15, value: 'high'}];
+
+      var resultMessage = quiz.resultMessage([20,11,20,4], result);
+
+      expect(resultMessage).to.be.a('string');
+      expect(resultMessage.indexOf('low') > -1).to.be.false;
+      expect(resultMessage.indexOf('high') > -1).to.be.true
     });
 
     it('informationTemplate() should return html template with the correct data', function() {
@@ -104,6 +125,20 @@ describe('Json Quiz', function() {
 
   describe('Utilities', function() {
 
+    var xhr, data;
+
+    before(function () {
+        xhr = sinon.useFakeXMLHttpRequest();
+        data = {};
+        xhr.onload = function (req) { data = req; };
+    });
+
+    after(function () {
+        // Like before we must clean up when tampering with globals.
+        xhr.restore();
+    });
+
+
     it('extend() should return an object with merged properties', function() {
 
         var obj1 = { name: 'test', val: 2 };
@@ -130,7 +165,7 @@ describe('Json Quiz', function() {
     it('updateScore() should increment the correct score to the score array', function() {
         quiz.updateScore(1000);
 
-        expect(state.answers).to.contain(1000);
+        expect(quiz.state.answers).to.contain(1000);
     });
 
     it('isValid() should valid the json data', function() {
