@@ -132,7 +132,7 @@
         renderTemplate(template, config.id);
     }
 
-    function end(state) {
+    function end(stat) {
         let score = getScore(state.answers);
         let message = resultMessage(score, state.data[1].results);
 

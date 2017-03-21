@@ -145,7 +145,7 @@ describe('javascript-quiz-using-json', function() {
     it('end() should clear all question array data', function() {
         expect(quiz.end).to.be.a('function');
 
-        let end = quiz.end(state);
+        var end = quiz.end(state);
 
         expect(end).to.be.a('string');
     });
