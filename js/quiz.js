@@ -129,7 +129,7 @@
 						console.log(data);
         }
         state.question.current += 1;
-        renderTemplate(template);
+        renderTemplate(template, config.id);
     }
 
     function end() {
@@ -157,7 +157,7 @@
     function informationTemplate(infoStr, isLast) {
         return `<form id="quizForm">
 									<p>${infoStr}</p>
-									<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Final Quiz" : "Next Question" }</button>
+									<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Finish Quiz" : "Next Question" }</button>
 								</form>`;
     }
 
@@ -189,8 +189,8 @@
 
     // DOM interaction
 
-    function renderTemplate(html) {
-        document.getElementById(config.id).innerHTML = html;
+    function renderTemplate(html, id) {
+        document.getElementById(id).innerHTML = html;
     }
 
     // FIXME: needs to dynamically bind a form submit event on the document:
@@ -229,7 +229,7 @@
 				<p>Sorry, we are unable to retrieve the data for this quiz.</p>
 				<small>${err}</small>
 				 `
-            );
+            , config.id);
         }
     };
 
@@ -240,6 +240,7 @@
     TEST = {
 				state,
         init,
+        VERSION,
         bindSubmit,
         renderTemplate,
         questionTemplate,

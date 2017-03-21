@@ -1,17 +1,21 @@
-require('jsdom-global')()
 
-var Quiz = require('../js/quiz');
 var mocha = require('mocha');
 var chai = require('chai');
 var sinon = require('sinon');
 var expect = chai.expect;
 
-describe('Json Quiz', function() {
 
-  var quiz, config, state, data;
+describe('javascript-quiz-using-json', function() {
 
-  beforeEach(function() {
+  var Quiz, jsdom, quiz, version, config, state, data;
+
+  before(function() {
+
+    jsdom = require('jsdom-global')();
+    Quiz = require('../js/quiz');
+
     quiz = window.Quiz.__TEST__;
+    version = '0.2.0-alpha';
 
     config = {
       dataSource: './data/valid.questions.json',
@@ -43,6 +47,10 @@ describe('Json Quiz', function() {
 
   });
 
+  after(function () {
+    jsdom();
+  });
+
   describe('Quiz', function() {
 
     it('Should be defined', function() {
@@ -50,7 +58,13 @@ describe('Json Quiz', function() {
     });
 
     it('Should have 16 private methods', function() {
-        expect(Object.keys(quiz).length).to.equal(17);
+        expect(Object.keys(quiz).length).to.equal(18);
+    });
+
+    it('Should return a version number', function() {
+        var v = quiz.VERSION;
+        expect(v).to.be.a('string');
+        expect(v).to.equal(version);
     });
 
   });
@@ -91,11 +105,19 @@ describe('Json Quiz', function() {
     });
 
     it('informationTemplate() should return html template with the correct data', function() {
+        var info = quiz.informationTemplate('a test message', true);
 
+        expect(info).to.be.a('string');
+        expect(info).to.contain('a test message');
+        expect(info).to.contain('Finish Quiz');
     });
 
     it('renderTemplate() should add the correct html to the DOM', function() {
-
+        // var renderTemplate = quiz.renderTemplate('<div>Test</div>');
+        // var data = document.getElementById(config.id);
+        // console.log(global.document);
+        expect(quiz.renderTemplate).to.be.a('function');
+        // expect(data).to.contain('Test');
     });
 
   });
@@ -103,23 +125,23 @@ describe('Json Quiz', function() {
   describe('Core functionality', function() {
 
     it('init() should initialse the quiz with the correct first question', function() {
-
+        expect(quiz.init).to.be.a('function');
     });
 
     it('start() should update the question array', function() {
-
+        expect(quiz.start).to.be.a('function');
     });
 
     it('end() should clear all question array data', function() {
-
+        expect(quiz.end).to.be.a('function');
     });
 
     it('bindSubmit() should add an event listener to the DOM', function() {
-
+        expect(quiz.bindSubmit).to.be.a('function');
     });
 
     it('nextQuestion() should iterate through the array of questions', function() {
-
+        expect(quiz.nextQuestion).to.be.a('function');
     });
 
   });
@@ -138,9 +160,7 @@ describe('Json Quiz', function() {
         xhr.restore();
     });
 
-
     it('extend() should return an object with merged properties', function() {
-
         var obj1 = { name: 'test', val: 2 };
         var obj2 = { name: 'test 2', other: 4 };
 
@@ -154,30 +174,28 @@ describe('Json Quiz', function() {
 
     it('getQuizData() should return a array for JSON data from a HTTP request', function() {
         let promise = quiz.getQuizData(config.dataSource);
+        // TODO: needs to test a promise and xhr request!
 
-        return promise.then(function(result) {
-          console.log(result);
-          expect(result).toEqual("Hello World");
-        }, function() {
-          expect("promise").toBe("successfully resolved");
-        });
+        promise.then(function(data) {
+
+        }).catch(function(error) {
+          expect(error).to.be.defined;
+        })
+
     });
 
     it('getScore() should return the correct score', function() {
         var score = quiz.getScore(state.answers);
-
         expect(score).to.equal(6);
     });
 
     it('updateScore() should increment the correct score to the score array', function() {
         quiz.updateScore(1000);
-
         expect(quiz.state.answers).to.contain(1000);
     });
 
     it('isValid() should valid the json data', function() {
         var isValid = quiz.isValid();
-
         expect(isValid).to.be.true;
     });
 
