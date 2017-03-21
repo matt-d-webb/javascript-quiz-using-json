@@ -50,8 +50,10 @@
             xhr.open('GET', url);
             xhr.onload = function onload() {
                 if (this.status >= 200 && this.status < 300) {
+                    console.log('resolved!');
                     resolve(xhr.response);
                 } else {
+                    console.log('rejected!');
                     reject({
                         status: this.status,
                         statusText: xhr.statusText
@@ -59,6 +61,7 @@
                 }
             };
             xhr.onerror = function onerror() {
+                console.log('error!');
                 reject({
                     status: this.status,
                     statusText: xhr.statusText
@@ -113,7 +116,7 @@
         // dynamic dom element needs a handler to the on click event:
         bindSubmit();
 
-        return nextQuestion(data);
+        nextQuestion(data);
     }
 
     function nextQuestion(data) {
@@ -195,6 +198,7 @@
         document.addEventListener('click', function(event) {
             if (event) {
                 // let data = new FormData(document.getElementById('quizForm'));
+                console.log(event);
             }
         });
     }

@@ -82,11 +82,12 @@ describe('Json Quiz', function() {
 
       var result = [{ minScore: 5, value: 'low'},{ minScore: 10, value: 'medium'}, { minScore: 15, value: 'high'}];
 
-      var resultMessage = quiz.resultMessage([20,11,20,4], result);
+      var resultMessage = quiz.resultMessage(20, result);
 
-      expect(resultMessage).to.be.a('string');
-      expect(resultMessage.indexOf('low') > -1).to.be.false;
-      expect(resultMessage.indexOf('high') > -1).to.be.true
+      expect(resultMessage).to.be.a('object');
+      expect(resultMessage.value).to.equal('high');
+      expect(resultMessage.value).to.not.equal('low');
+      expect(resultMessage.value).to.not.equal('medium');
     });
 
     it('informationTemplate() should return html template with the correct data', function() {
@@ -129,7 +130,6 @@ describe('Json Quiz', function() {
 
     before(function () {
         xhr = sinon.useFakeXMLHttpRequest();
-        data = {};
         xhr.onload = function (req) { data = req; };
     });
 
@@ -153,7 +153,14 @@ describe('Json Quiz', function() {
     });
 
     it('getQuizData() should return a array for JSON data from a HTTP request', function() {
+        let promise = quiz.getQuizData(config.dataSource);
 
+        return promise.then(function(result) {
+          console.log(result);
+          expect(result).toEqual("Hello World");
+        }, function() {
+          expect("promise").toBe("successfully resolved");
+        });
     });
 
     it('getScore() should return the correct score', function() {
