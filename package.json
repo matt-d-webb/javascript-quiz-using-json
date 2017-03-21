@@ -25,6 +25,10 @@
     "nyc": "7.1.0",
     "sinon": "^2.1.0"
   },
+  "engines": {
+    "node": "6.x",
+    "npm": "3.x"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Matt-Webb/jquery-quiz-using-json.git"
