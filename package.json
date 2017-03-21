@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
+    "watch:test": "npm t -- --watch",
     "validate": "npm run cover && npm run check-coverage",
     "check-coverage": "nyc check-coverage --statements 10 --branches 10 --functions 10 --lines 10",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
