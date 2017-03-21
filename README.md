@@ -1,7 +1,6 @@
 # Javascript quiz using JSON
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json)
-[![MIT License](https://img.shields.io/npm/l/starwars-names.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json)
 [![codecov](https://codecov.io/gh/Matt-Webb/jquery-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/jquery-quiz-using-json)
 
