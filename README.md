@@ -1,4 +1,8 @@
+
+
 # Javascript quiz using JSON
+:question: :question: :question: :question: :question: :question: :question: :question: :question:
+
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/jquery-quiz-using-json)
 [![Build Status](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json)
@@ -9,13 +13,13 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
-### ALPHA (v0.2.0)
+### ALPHA [v0.2.0](https://github.com/Matt-Webb/jquery-quiz-using-json/tree/v0.2.0-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
-#### EXAMPLE USE:
+#### How to use:
 
-__EXAMPLE JSON__
+**Sample JSON**
 
 Here is a sample of the quiz question data:
 
@@ -33,7 +37,7 @@ Here is a sample of the quiz question data:
             [0,3,1,2]
       }
 
-__HTML__
+**HTML**
 
     <!-- dom reference -->
     <div id="quizName"></div>
@@ -41,17 +45,17 @@ __HTML__
     <!-- script -->
     <script src="./jquery-quiz-using-json/dist/quiz.min.js"></script>
 
-__JAVASCRIPT__
+**JAVASCRIPT**
 
 Initialise the quiz like so. Note this needs to be done after referencing the script shown above.
 
     Quiz.init({ id: "quizName" });  
 
-__HOW TO USE__
+**HOW TO INSTALL**
 
-```$ npm i ```
+`$ npm i`
 
-```$ npm test ```
+`$ npm test`
 
 
 ### TO DO
