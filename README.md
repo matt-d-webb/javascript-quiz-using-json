@@ -4,8 +4,8 @@
 [![Build Status](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/jquery-quiz-using-json)
 [![codecov](https://codecov.io/gh/Matt-Webb/jquery-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/jquery-quiz-using-json)
 
-This code enables you to render questions with optional answers using radio buttons. Using [valid JSON](http://jsonlint.com/)
-you can provide a list of questions and answers which will render to the user in sequence.
+This code enables you to render questions with optional answers as multiple choice. The data is loaded using [valid JSON](http://jsonlint.com/)
+you can provide a list of questions and answers which will render to the user in sequence or at random.
 
 Each question can be assign a score against each option, this allows for a range of score for each question.
 
@@ -65,6 +65,7 @@ __HOW TO USE__
 * [ ] Add module bundler
 * [ ] Add test coverage badge
 * [ ] Add Automated Acceptance Tests
+* [ ] Add charts to result rendering
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
 * [x] Configurate as bower package
 * [x] Remove Bower, Switch to npm
