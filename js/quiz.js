@@ -11,6 +11,7 @@
 
     let Quiz;
     let TEST;
+    let Chart = 1;
 
     // configuration for the plugin, these can be overwritten in the initialisation function:
     let config = {

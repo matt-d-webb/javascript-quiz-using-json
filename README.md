@@ -17,8 +17,6 @@ Each question can be assigned a score against each option, this allows for a ran
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
-test
-
 #### How to use:
 
 **Sample JSON**
@@ -71,8 +69,10 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 * [ ] Add module bundler
 * [ ] Add test coverage badge
 * [ ] Add Automated Acceptance Tests
-* [ ] Add charts to result rendering
+* [x] Add charts to result rendering
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
 * [x] Configurate as bower package
 * [x] Remove Bower, Switch to npm
 * [x] Add Unit Tests
+
+To use charts you will need to install x, y, z
