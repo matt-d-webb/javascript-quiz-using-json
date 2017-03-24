@@ -17,6 +17,8 @@ Each question can be assigned a score against each option, this allows for a ran
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
+test
+
 #### How to use:
 
 **Sample JSON**
