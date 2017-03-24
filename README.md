@@ -11,7 +11,7 @@
 This code enables you to render questions with optional answers as multiple choice. The data is loaded using [valid JSON](http://jsonlint.com/)
 you can provide a list of questions and answers which will render to the user in sequence or at random.
 
-Each question can be assign a score against each option, this allows for a range of score for each question.
+Each question can be assigned a score against each option, this allows for a range of scores for each question.
 
 ### ALPHA [v0.2.0](https://github.com/Matt-Webb/jquery-quiz-using-json/tree/v0.2.0-alpha)
 
