@@ -5,7 +5,7 @@
 
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json)
-[![Build Status](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/javacript-quiz-using-json)
+[![Build Status](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json)
 [![codecov](https://codecov.io/gh/Matt-Webb/javascipt-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json)
 
 This code enables you to render questions with optional answers as multiple choice. The data is loaded using [valid JSON](http://jsonlint.com/)
@@ -45,7 +45,7 @@ Here is a sample of the quiz question data:
     <div id="quizName"></div>
 
     <!-- script -->
-    <script src="./jquery-quiz-using-json/dist/quiz.min.js"></script>
+    <script src="./javascript-quiz-using-json/dist/quiz.min.js"></script>
 
 **JAVASCRIPT**
 
@@ -63,7 +63,7 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 
 ### TO DO
 
-* [ ] Remove jQuery dependency
+* [ ] Remove jquery dependency
 * [ ] Abstract the rendered html question into templates for better customisation
 * [ ] Add optional style sheets
 * [ ] Move TODOs to issues with need-help flag
