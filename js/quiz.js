@@ -33,9 +33,9 @@
 
 	// TODO: update with ES6 Symbol! :-)
 	function extend(defaults, options) {
-		for (let i in options) {
-			defaults[i] = options[i];
-		}
+		Object.keys(options).forEach((key)=> {
+			defaults[key] = options[key];
+		})
 		return defaults;
 	}
 
