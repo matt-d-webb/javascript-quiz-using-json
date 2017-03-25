@@ -72,7 +72,8 @@
     }
 
     function getScore(answers) {
-        return answers.reduce((acc, val) => acc + val);
+        if(!answers) return 0;
+        else return answers.reduce((acc, val) => acc + val);
     }
 
     function updateScore(userAnswer) {
@@ -81,7 +82,8 @@
     }
 
     function getTemplate(data, currentQuestion) {
-        let question = data[0].questions[currentQuestion];
+        let question = data.questions[currentQuestion];
+        console.log('question', question);
         if (currentQuestion === state.question.count) {
             end();
         };
@@ -102,25 +104,26 @@
 
     function start(data) {
 
-        if (!isValid(data)) return;
+          if (!isValid(data)) return;
 
-        //
-        state.data = JSON.parse(data);
+          state.data = JSON.parse(data);
 
-        if (config.random === true) {
-            state.data = randomiseQuestions(data);
-        }
+          if (config.random === true) {
+              state.data = randomiseQuestions(data);
+          }
 
-        state.question.count = state.data[0].questions.length;
+          state.question.count = state.data[0].questions.length;
 
-        // dynamic dom element needs a handler to the on click event:
-        bindSubmit();
 
-        nextQuestion(data);
+          // dynamic dom element needs a handler to the on click event:
+          bindSubmit();
+          nextQuestion(data);
     }
 
     function nextQuestion(data) {
-        let template = getTemplate(state.data, state.question.count);
+        console.log(state);
+        let template = getTemplate(data, state.question.count);
+
         if (state.question.current) {
             let userAnswer = data; // $(data).serializeArray()[0].value;
             // updateScore({
@@ -133,14 +136,16 @@
     }
 
     function end(state) {
-        let score = getScore(state.answers);
-        let message = resultMessage(score, state.data[1].results);
+        let score = ''; //getScore(state.answers);
+        let message = ''; // resultMessage(score, state.data[1].results);
 
-        return `<h3>Quiz Complete</h3>
-								<h4>${message.title}</h4>
-								<p>${message.description}</p>
-								<p>Your score was: ${score}</p>
-						 		<p>Total questions: ${state.question.count}</p>`;
+        // should probably reset 'state' here!
+
+        return `<h3>Quiz Complete</h3>`;
+								// <h4>${message.title}</h4>
+								// <p>${message.description}</p>
+								// <p>Your score was: ${score}</p>
+                // l questions: ${state.question.count}</p>`;
     }
 
     function resultMessage(score, result) {
