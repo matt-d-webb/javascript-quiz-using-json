@@ -82,7 +82,7 @@
 		let question = questions[currentQuestion - 1];
 		if (currentQuestion === state.question.count) {
 			end(state);
-		};
+		}
 		return questionTemplate(question.question, question.options);
 	}
 
@@ -182,7 +182,7 @@
 								</form>`;
 
 		return template;
-	};
+	}
 
 	// DOM interaction
 
@@ -226,7 +226,7 @@
 			return renderTemplate(`<p>Sorry, we are unable to retrieve the data for this quiz.</p><small>${err}</small>`
         , config.id);
 		}
-	};
+	}
 
 	// --------------------------------------------------------------------//
 	// ----------------- PRIVATE API (TESTING ONLY) -----------------------//
