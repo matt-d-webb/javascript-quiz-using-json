@@ -19,7 +19,7 @@
 		seedData: './data/data.json',
 		id: 'quiz',
 		randomise: false,
-		seed: true
+		seed: false
 	};
 
 	let state = {
@@ -59,7 +59,6 @@
 				}
 			};
 			xhr.onerror = function onerror() {
-				console.log('error!');
 				reject({
 					status: this.status,
 					statusText: xhr.statusText
@@ -70,7 +69,7 @@
 	}
 
 	function getScore(answers) {
-		if (!answers) return 0;
+		if (!answers.length) return 0;
 		else return answers.reduce((acc, val) => acc + val);
 	}
 
@@ -108,7 +107,6 @@
 			// updateScore({
 			//     answer: userAnswer
 			// });
-			console.log(data);
 		}
 		state.question.current += 1;
 		renderTemplate(template, config.id);
@@ -190,14 +188,15 @@
 
 	function renderTemplate(html, id) {
 		document.getElementById(id).innerHTML = html;
+    // document.body.appendChild(html);
 	}
 
 	// FIXME: needs to dynamically bind a form submit event on the document:
 	function bindSubmit() {
 		document.addEventListener('click', function (event) {
-			if (event) {
+			if (event.target.id === 'nextQuestion') {
 				// let data = new FormData(document.getElementById('quizForm'));
-				console.log(event.target);
+        nextQuestion(state.data[0].questions);
 			}
 		});
 	}
@@ -208,6 +207,7 @@
 
 		// extend all default options, (config is internally accessible):
 		extend(config, options);
+    console.log(config, options);
 
 		// will allow the quiz to be run with seed example data:
 		if (config.seed === true) {

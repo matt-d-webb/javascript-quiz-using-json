@@ -30,11 +30,16 @@
 
   <script>
 
-      console.log('Hello!');
+      var options = {
+        id: 'quiz',
+        dataSource: 'https://raw.githubusercontent.com/Matt-Webb/javascript-quiz-using-json/master/examples/data/data.json'
+      };
 
-      Quiz.init({
-        id: 'quiz'
-      });
+      var obj = {
+        name: 'Matthew'
+      };
+
+      Quiz.init(options);
 
   </script>
 
