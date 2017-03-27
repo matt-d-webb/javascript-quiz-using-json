@@ -104,9 +104,9 @@
 
 		if (state.question.current) {
 			let userAnswer = data; // $(data).serializeArray()[0].value;
-			// updateScore({
-			//     answer: userAnswer
-			// });
+			updateScore({
+			    answer: userAnswer
+			});
 		}
 		state.question.current += 1;
 		renderTemplate(template, config.id);
@@ -135,9 +135,8 @@
 
 		// TODO: should probably reset 'state' here!
 
-		return `<h3>Quiz Complete</h3><h4>${message.title}</h4>
-		  <p>${message.description}</p>
-		    <p>Your score was: ${score} questions: ${state.question.count}</p>`;
+		return `<h3>Quiz Complete</h3><h4>${message.title}</h4><p>${message.description}</p>
+		  <p>Your score was: ${score} questions: ${state.question.count}</p>`;
 	}
 
 	function resultMessage(score, result) {
@@ -152,18 +151,17 @@
 	}
 
 	function informationTemplate(infoStr, isLast) {
-		return `<form id="quizForm">
-									<p>${infoStr}</p>
-									<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Finish Quiz" : "Next Question" }</button>
-								</form>`;
+		return `<form id="quizForm"><p>${infoStr}</p>
+					<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Finish Quiz" : "Next Question" }</button>
+			</form>`;
 	}
 
 	function questionTemplate(questionStr, options) {
 
 		let isLastQuestion = (state.question.count === (state.question.current + 1));
 		let template = `<form id="quizForm">
-                          <div>PROGRESS BAR HERE</div>
-													<p>${questionStr}</p>`;
+                <div>PROGRESS BAR HERE</div>
+								<p>${questionStr}</p>`;
 
 		// html radio buttons.
 		// NOTE: that the index value is the reference used to determine the score:
