@@ -64,13 +64,13 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 ### TO DO
 
 * [ ] Remove jquery dependency
-* [ ] Abstract the rendered html question into templates for better customisation
+* [ ] ~~Abstract the rendered html question into templates for better customisation~~
 * [ ] Add optional style sheets
 * [ ] Move TODOs to issues with need-help flag
 * [ ] Set up semvar
-* [ ] Update Travis Build
+* [x] Update Travis Build
 * [ ] Add module bundler
-* [ ] Add test coverage badge
+* [x] Add test coverage badge
 * [ ] Add Automated Acceptance Tests
 * [ ] Add charts to result rendering
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
