@@ -205,7 +205,6 @@
 
 		// extend all default options, (config is internally accessible):
 		extend(config, options);
-    console.log(config, options);
 
 		// will allow the quiz to be run with seed example data:
 		if (config.seed === true) {

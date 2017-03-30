@@ -7,6 +7,7 @@
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json)
 [![Build Status](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json)
 [![codecov](https://codecov.io/gh/Matt-Webb/javascipt-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json)
+[![devDependencies Status](https://david-dm.org/Matt-Webb/javascript-quiz-using-json/dev-status.svg)](https://david-dm.org/Matt-Webb/javascript-quiz-using-json?type=dev)
 
 This code enables you to render questions with optional answers as multiple choice. The data is loaded using [valid JSON](http://jsonlint.com/)
 you can provide a list of questions and answers which will render to the user in sequence or at random.
