@@ -86,6 +86,7 @@
 		return questionTemplate(question.question, question.options);
 	}
 
+	// TODO: re write.
 	function randomiseQuestions(questions) {
 		let qs = questions.length,
 			t, i;
@@ -192,8 +193,7 @@
 	// FIXME: needs to dynamically bind a form submit event on the document:
 	function bindSubmit() {
 		document.addEventListener('click', function (event) {
-			if (event.target.id === 'nextQuestion') {
-				// let data = new FormData(document.getElementById('quizForm'));
+			if(event.target.id === 'nextQuestion') {
         nextQuestion(state.data[0].questions);
 			}
 		});
