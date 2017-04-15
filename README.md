@@ -70,7 +70,7 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 * [ ] Move TODOs to issues with need-help flag
 * [ ] Set up semvar
 * [x] Update Travis Build
-* [ ] Add module bundler
+* [x] Add module bundler
 * [x] Add test coverage badge
 * [ ] Add Automated Acceptance Tests
 * [ ] Add charts to result rendering
