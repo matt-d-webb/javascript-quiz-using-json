@@ -58,10 +58,17 @@ describe('javascript-quiz-using-json', function() {
       	"data": data
       };
 
+      // this.xhr = sinon.useFakeXMLHttpRequest();
+      // this.requests = [];
+      // this.xhr.onCreate = function(xhr) {
+      //       this.requests.push(xhr);
+      // }.bind(this);
+
   });
 
   after(function () {
     jsdom();
+    // this.xhr.restore();
   });
 
   describe('Quiz', function() {
@@ -142,9 +149,9 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('start() should update the question array', function() {
-        expect(quiz.start).to.be.a('function');
-
+        
         quiz.start(data);
+        expect(quiz.start).to.be.a('function');
 
     });
 
