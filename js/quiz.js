@@ -113,29 +113,28 @@
 		renderTemplate(template, config.id);
 	}
 
-  function start(data) {
+	function start(data) {
 
-    if (!isValid(data)) return;
+	    if (!isValid(data)) return;
 
-    state.data = JSON.parse(data);
+	    state.data = JSON.parse(data);
 
-    if (config.random === true) {
-      state.data = randomiseQuestions(data);
-    }
+	    if (config.random === true) {
+	      state.data = randomiseQuestions(data);
+	    }
 
-    state.question.count = state.data[0].questions.length;
+	    state.question.count = state.data[0].questions.length;
 
-    // dynamic dom element needs a handler to the on click event:
-    bindSubmit();
-    nextQuestion(state.data[0].questions);
-  }
+	    // dynamic dom element needs a handler to the on click event:
+	    bindSubmit();
+	    nextQuestion(state.data[0].questions);
+	}
 
 	function end(state) {
 		let score = getScore(state.answers);
 		let message = resultMessage(score, state.data[1].results);
 
-		// TODO: should probably reset 'state' here!
-
+		// TODO: should probably reset 'state' here
 		return `<h3>Quiz Complete</h3><h4>${message.title}</h4><p>${message.description}</p>
 		  <p>Your score was: ${score} questions: ${state.question.count}</p>`;
 	}
@@ -153,7 +152,7 @@
 
 	function informationTemplate(infoStr, isLast) {
 		return `<form id="quizForm"><p>${infoStr}</p>
-					<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Finish Quiz" : "Next Question" }</button>
+				<button id="nextQuestion" type="submit" class="btn btn-default">${isLast ? "Finish Quiz" : "Next Question" }</button>
 			</form>`;
 	}
 
@@ -164,21 +163,19 @@
                 <div>PROGRESS BAR HERE</div>
 								<p>${questionStr}</p>`;
 
-		// html radio buttons.
-		// NOTE: that the index value is the reference used to determine the score:
 		options.forEach((option, index) => {
 			template += `<div class="radio">
-											<label>
-												<input type="radio" name="quizAnswer" required value="${index}">
-												${option}
-											</label>
-										</div>`;
+					<label>
+						<input type="radio" name="quizAnswer" required value="${index}">
+						${option}
+					</label>
+				</div>`;
 		});
 
 		template += `<button id="nextQuestion" type="submit" class="btn btn-default">
-											${ isLastQuestion ? "Finish Quiz" : "Next" }
-									</button>
-								</form>`;
+				${ isLastQuestion ? "Finish Quiz" : "Next" }
+				</button>
+			</form>`;
 
 		return template;
 	}
@@ -187,14 +184,14 @@
 
 	function renderTemplate(html, id) {
 		document.getElementById(id).innerHTML = html;
-    // document.body.appendChild(html);
+    		// document.body.appendChild(html);
 	}
 
 	// FIXME: needs to dynamically bind a form submit event on the document:
 	function bindSubmit() {
 		document.addEventListener('click', function (event) {
 			if(event.target.id === 'nextQuestion') {
-        nextQuestion(state.data[0].questions);
+        			nextQuestion(state.data[0].questions);
 			}
 		});
 	}
@@ -220,8 +217,9 @@
 		}
 
 		function error(err) {
-			return renderTemplate(`<p>Sorry, we are unable to retrieve the data for this quiz.</p><small>${err}</small>`
-        , config.id);
+			return renderTemplate(
+				`<p>Sorry, we are unable to retrieve the data for this quiz.</p><small>${err}</small>`
+        		, config.id);
 		}
 	}
 
