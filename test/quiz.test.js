@@ -57,13 +57,6 @@ describe('javascript-quiz-using-json', function() {
       	"answers": [2, 3, 1],
       	"data": data
       };
-
-      // this.xhr = sinon.useFakeXMLHttpRequest();
-      // this.requests = [];
-      // this.xhr.onCreate = function(xhr) {
-      //       this.requests.push(xhr);
-      // }.bind(this);
-
   });
 
   after(function () {
@@ -149,8 +142,8 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('start() should update the question array', function() {
-        
-        quiz.start(data);
+
+        // quiz.start(data);
         expect(quiz.start).to.be.a('function');
 
     });

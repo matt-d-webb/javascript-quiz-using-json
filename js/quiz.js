@@ -31,7 +31,10 @@
 		data: {}
 	};
 
-	// TODO: update with ES6 Symbol! :-)
+	const monitor = new Proxy(state, () => {
+
+	});
+
 	function extend(defaults, options) {
 		Object.keys(options).forEach((key)=> {
 			defaults[key] = options[key];
@@ -47,8 +50,9 @@
 	function getQuizData(url) {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
+
 			xhr.open('GET', url);
-			xhr.onload = function onload() {
+			xhr.onload = function onload(data) {
 				if (this.status >= 200 && this.status < 300) {
 					resolve(xhr.response);
 				} else {
@@ -86,28 +90,24 @@
 		return questionTemplate(question.question, question.options);
 	}
 
-	// TODO: re write.
 	function randomiseQuestions(questions) {
-		let qs = questions.length,
-			t, i;
+		let qs = questions.length;
+		let item, temp;
 		while (qs) {
-			i = Math.floor(Math.random() * qs--);
-			t = questions[qs];
-			questions[qs] = questions[i];
-			questions[i] = t;
+			item = Math.floor(Math.random() * qs--);
+			temp = questions[qs];
+			questions[qs] = questions[item];
+			questions[item] = temp;
 		}
 		return questions;
 	}
 
-	function nextQuestion(data) {
+	function nextQuestion(questions) {
 
-		let template = getTemplate(data, state.question.count);
+		let template = getTemplate(questions, state.question.count);
 
 		if (state.question.current) {
-			let userAnswer = data; // $(data).serializeArray()[0].value;
-			updateScore({
-			    answer: userAnswer
-			});
+			let userAnswer = questions; // $(data).serializeArray()[0].value;
 		}
 		state.question.current += 1;
 		renderTemplate(template, config.id);
@@ -141,7 +141,6 @@
 
 	function resultMessage(score, result) {
 		let message = {};
-
 		result.forEach((data) => {
 			if (score >= data.minScore) {
 				message = data;
@@ -159,23 +158,23 @@
 	function questionTemplate(questionStr, options) {
 
 		let isLastQuestion = (state.question.count === (state.question.current + 1));
-		let template = `<form id="quizForm">
+		let template = `<div id="quizForm">
                 <div>PROGRESS BAR HERE</div>
 								<p>${questionStr}</p>`;
 
-		options.forEach((option, index) => {
+		options ? options.forEach((option, index) => {
 			template += `<div class="radio">
 					<label>
 						<input type="radio" name="quizAnswer" required value="${index}">
 						${option}
 					</label>
 				</div>`;
-		});
+		}) : template += `<div>Error!</div>`;
 
 		template += `<button id="nextQuestion" type="submit" class="btn btn-default">
 				${ isLastQuestion ? "Finish Quiz" : "Next" }
 				</button>
-			</form>`;
+			</div>`;
 
 		return template;
 	}
@@ -183,15 +182,32 @@
 	// DOM interaction
 
 	function renderTemplate(html, id) {
-		document.getElementById(id).innerHTML = html;
-    		// document.body.appendChild(html);
+		const existing = document.getElementById(id);
+		if(existing) existing.remove();
+
+	 	const form = document.createElement('form');
+		form.setAttribute('id', id);
+		form.innerHTML = html;
+    document.body.appendChild(form);
 	}
 
-	// FIXME: needs to dynamically bind a form submit event on the document:
 	function bindSubmit() {
-		document.addEventListener('click', function (event) {
-			if(event.target.id === 'nextQuestion') {
-        			nextQuestion(state.data[0].questions);
+		document.addEventListener('submit', function (event) {
+			event.preventDefault();
+
+			if(event.target.id === config.id) {
+					const radios = document.getElementsByName('quizAnswer');
+
+					try {
+						const answer = Array.from(radios).find((r, i) => radios[i].checked).value;
+						updateScore({
+								answer: answer
+						});
+					} catch (e) {
+						console.log(e);
+					}
+
+        	nextQuestion(state.data[0].questions);
 			}
 		});
 	}
@@ -209,8 +225,7 @@
 		}
 
 		// get json
-		getQuizData(config.dataSource)
-			.then(success, error);
+		getQuizData(config.dataSource).then(success, error);
 
 		function success(data) {
 			start(data, 0);

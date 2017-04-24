@@ -56,11 +56,17 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 
 **HOW TO INSTALL**
 
-`$ npm i`
+`$ npm install`
+
+### [CONTRIBUTING](./CONTRIBUTE.md)
+
+`$ git clone`
+
+`$ npm install`
 
 `$ npm test`
 
-### [CONTRIBUTING](./CONTRIBUTE.md)
+`$ npm start`
 
 ### TO DO
 
