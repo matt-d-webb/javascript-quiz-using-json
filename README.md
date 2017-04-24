@@ -14,7 +14,7 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assigned a score against each option, this allows for a range of scores for each question.
 
-### ALPHA [v0.2.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.2.0-alpha)
+### ALPHA [v0.3.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.3.0-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
