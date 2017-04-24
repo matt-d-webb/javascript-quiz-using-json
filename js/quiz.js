@@ -7,7 +7,7 @@
 
 	'use strict';
 
-	const VERSION = '0.2.0-alpha';
+	const VERSION = '0.3.0-alpha';
 
 	let Quiz;
 	let TEST;

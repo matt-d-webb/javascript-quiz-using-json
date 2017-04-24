@@ -15,7 +15,7 @@ describe('javascript-quiz-using-json', function() {
     Quiz = require('../js/quiz');
 
     quiz = window.Quiz.__TEST__;
-    version = '0.2.0-alpha';
+    version = '0.3.0-alpha';
 
     config = {
       dataSource: './data/valid.questions.json',
