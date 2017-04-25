@@ -1,5 +1,5 @@
 /*
-      Version: 0.2.0-alpha
+      Version: 0.4.0-alpha
        Author: Matthew D Webb
   Description: json quiz score calculator
  */
@@ -7,13 +7,14 @@
 
 	'use strict';
 
-	const VERSION = '0.3.0-alpha';
+	const VERSION = '0.4.0-alpha';
 
 	let Quiz;
 	let TEST;
+	let config;
 
 	// configuration for the plugin, these can be overwritten in the initialisation function:
-	let config = {
+	let defaultOptions = {
 		dataSource: null,
 		loadingGif: null,
 		seedData: './data/data.json',
@@ -31,19 +32,21 @@
 		data: {}
 	};
 
-	const monitor = new Proxy(state, () => {
-
-	});
 
 	function extend(defaults, options) {
-		Object.keys(options).forEach((key)=> {
-			defaults[key] = options[key];
-		})
-		return defaults;
+		// maybe use Object.assign here?! Current usage is impure.
+		// Object.keys(options).forEach((key)=> defaults[key] = options[key]);
+		return Object.assign({}, defaults, options);
+		//return defaults;
 	}
 
 	// TODO: validate JSON and provide user friendly messages.
 	function isValid(data) {
+		try {
+			JSON.parse(data);
+		} catch (e) {
+			return false;
+		}
 		return true;
 	}
 
@@ -78,16 +81,18 @@
 	}
 
 	function updateScore(userAnswer) {
-		// map data to friendlier data set.
 		state.answers.push(userAnswer);
 	}
 
 	function getTemplate(questions, currentQuestion) {
-		let question = questions[currentQuestion - 1];
+		// End of Quiz?
 		if (currentQuestion === state.question.count) {
-			end(state);
+			return end(state);
+		// Next Question
+		} else {
+			let question = questions[currentQuestion];
+			return questionTemplate(question.question, question.options);
 		}
-		return questionTemplate(question.question, question.options);
 	}
 
 	function randomiseQuestions(questions) {
@@ -102,39 +107,39 @@
 		return questions;
 	}
 
-	function nextQuestion(questions) {
-
-		let template = getTemplate(questions, state.question.count);
-
-		if (state.question.current) {
-			let userAnswer = questions; // $(data).serializeArray()[0].value;
-		}
+	function nextQuestion(state) {
+		const questions = state.data[0].questions;
+		const currentQ = state.question.current;
+		const template = getTemplate(questions, currentQ);
+		// increment current question:
 		state.question.current += 1;
 		renderTemplate(template, config.id);
 	}
 
 	function start(data) {
 
-	    if (!isValid(data)) return;
+	    if (!isValid(data)) {
+				renderTemplate('<p>The JSON data provided is not valid! Please check this and retry</p>', config.id);
+				return;
+			}
 
+			// should be moved.
 	    state.data = JSON.parse(data);
+			state.question.count = state.data[0].questions.length;
 
 	    if (config.random === true) {
-	      state.data = randomiseQuestions(data);
+	     	state.data = randomiseQuestions(data);
 	    }
 
-	    state.question.count = state.data[0].questions.length;
-
 	    // dynamic dom element needs a handler to the on click event:
-	    bindSubmit();
-	    nextQuestion(state.data[0].questions);
+	    bindSubmit(document);
+	    nextQuestion(state);
 	}
 
 	function end(state) {
 		let score = getScore(state.answers);
 		let message = resultMessage(score, state.data[1].results);
 
-		// TODO: should probably reset 'state' here
 		return `<h3>Quiz Complete</h3><h4>${message.title}</h4><p>${message.description}</p>
 		  <p>Your score was: ${score} questions: ${state.question.count}</p>`;
 	}
@@ -157,19 +162,19 @@
 
 	function questionTemplate(questionStr, options) {
 
-		let isLastQuestion = (state.question.count === (state.question.current + 1));
-		let template = `<div id="quizForm">
+		const isLastQuestion = (state.question.count === (state.question.current + 1));
+		var template = `<div id="quizForm">
                 <div>PROGRESS BAR HERE</div>
 								<p>${questionStr}</p>`;
 
 		options ? options.forEach((option, index) => {
 			template += `<div class="radio">
 					<label>
-						<input type="radio" name="quizAnswer" required value="${index}">
+						<input type="radio" name="quizAnswer" required value="${index + 1}">
 						${option}
 					</label>
 				</div>`;
-		}) : template += `<div>Error!</div>`;
+		}) : template += `<div>Error! No options provided!</div>`;
 
 		template += `<button id="nextQuestion" type="submit" class="btn btn-default">
 				${ isLastQuestion ? "Finish Quiz" : "Next" }
@@ -183,31 +188,23 @@
 
 	function renderTemplate(html, id) {
 		const existing = document.getElementById(id);
-		if(existing) existing.remove();
-
+		if(existing) {
+			existing.remove();
+		}
 	 	const form = document.createElement('form');
 		form.setAttribute('id', id);
 		form.innerHTML = html;
     document.body.appendChild(form);
 	}
 
-	function bindSubmit() {
+	function bindSubmit(document) {
 		document.addEventListener('submit', function (event) {
 			event.preventDefault();
-
 			if(event.target.id === config.id) {
 					const radios = document.getElementsByName('quizAnswer');
-
-					try {
-						const answer = Array.from(radios).find((r, i) => radios[i].checked).value;
-						updateScore({
-								answer: answer
-						});
-					} catch (e) {
-						console.log(e);
-					}
-
-        	nextQuestion(state.data[0].questions);
+					const answer = parseInt(Array.from(radios).find((r, i) => radios[i].checked).value);
+					updateScore(answer);
+        	nextQuestion(state);
 			}
 		});
 	}
@@ -217,7 +214,7 @@
 	function init(options) {
 
 		// extend all default options, (config is internally accessible):
-		extend(config, options);
+		config = extend(defaultOptions, options);
 
 		// will allow the quiz to be run with seed example data:
 		if (config.seed === true) {
@@ -233,7 +230,8 @@
 
 		function error(err) {
 			return renderTemplate(
-				`<p>Sorry, we are unable to retrieve the data for this quiz.</p><small>${err}</small>`
+				`<p>Sorry, we are unable to retrieve the data for this quiz.</p>
+					<small>Try checking the dateSource provided: ${config.dataSource}</small>`
         		, config.id);
 		}
 	}
@@ -274,7 +272,6 @@
 	// --- test-only ---------
 	Quiz.__TEST__ = TEST;
 	// --- end-test-only --------
-
 
 	return Quiz;
 

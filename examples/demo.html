@@ -30,16 +30,16 @@
 
   <script>
 
-      var options = {
-        id: 'quiz',
-        dataSource: './data/data.json'
-      };
+      if(Quiz) {
 
-      var obj = {
-        name: 'Matthew'
-      };
+        var options = {
+          id: 'quiz',
+          dataSource: './data/data.json'
+        };
 
-      Quiz.init(options);
+        Quiz.init(options);
+      }
+
 
   </script>
 

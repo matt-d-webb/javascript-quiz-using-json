@@ -1,9 +1,9 @@
+"use strict";
 
 var mocha = require('mocha');
 var chai = require('chai');
 var sinon = require('sinon');
 var expect = chai.expect;
-
 
 describe('javascript-quiz-using-json', function() {
 
@@ -15,7 +15,7 @@ describe('javascript-quiz-using-json', function() {
     Quiz = require('../js/quiz');
 
     quiz = window.Quiz.__TEST__;
-    version = '0.3.0-alpha';
+    version = '0.4.0-alpha';
 
     config = {
       dataSource: './data/valid.questions.json',
@@ -54,14 +54,13 @@ describe('javascript-quiz-using-json', function() {
       		"current": 0,
       		"count": 0
       	},
-      	"answers": [2, 3, 1],
+      	"answers": [2,3,1],
       	"data": data
       };
   });
 
   after(function () {
     jsdom();
-    // this.xhr.restore();
   });
 
   describe('Quiz', function() {
@@ -79,38 +78,30 @@ describe('javascript-quiz-using-json', function() {
         expect(v).to.be.a('string');
         expect(v).to.equal(version);
     });
-
   });
 
   describe('Templates', function() {
 
     it('questionTemplate() should return a string from', function() {
-
-        var questions = {
+       var questions = {
           question: "Valid Question 1 - four options",
           info: "Information 1",
           options:["Option 1","Option 2","Option 3","Option 4"],
           scores:[4,3,1,2]
         };
-
         var str = quiz.questionTemplate(questions.question, questions.options);
-
         expect(str).to.be.a('string');
+        expect(str).to.contain("Option 3");
     });
 
     it('getTemplate() should return a valid template', function() {
-
       var template = quiz.getTemplate(data, 1);
-
       expect(template).to.be.a('string');
     });
 
     it('resultMessage() should return a summarised html message with the correct data', function() {
-
       var result = [{ minScore: 5, value: 'low'},{ minScore: 10, value: 'medium'}, { minScore: 15, value: 'high'}];
-
       var resultMessage = quiz.resultMessage(20, result);
-
       expect(resultMessage).to.be.a('object');
       expect(resultMessage.value).to.equal('high');
       expect(resultMessage.value).to.not.equal('low');
@@ -119,18 +110,17 @@ describe('javascript-quiz-using-json', function() {
 
     it('informationTemplate() should return html template with the correct data', function() {
         var info = quiz.informationTemplate('a test message', true);
-
         expect(info).to.be.a('string');
         expect(info).to.contain('a test message');
         expect(info).to.contain('Finish Quiz');
     });
 
     it('renderTemplate() should add the correct html to the DOM', function() {
-        // var renderTemplate = quiz.renderTemplate('<div>Test</div>');
-        // var data = document.getElementById(config.id);
-        // console.log(global.document);
+        var renderTemplate = quiz.renderTemplate('<div>Test</div>', 'quiz');
+        var el = document.getElementById('quiz');
         expect(quiz.renderTemplate).to.be.a('function');
-        // expect(data).to.contain('Test');
+        expect(el).to.defined;
+        expect(el.innerHTML).to.contain('Test');
     });
 
   });
@@ -142,17 +132,12 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('start() should update the question array', function() {
-
-        // quiz.start(data);
         expect(quiz.start).to.be.a('function');
-
     });
 
     it('end() should clear all question array data', function() {
         expect(quiz.end).to.be.a('function');
-
         var end = quiz.end(state);
-
         expect(end).to.be.a('string');
     });
 
@@ -176,7 +161,6 @@ describe('javascript-quiz-using-json', function() {
     });
 
     after(function () {
-        // Like before we must clean up when tampering with globals.
         xhr.restore();
     });
 
@@ -194,10 +178,8 @@ describe('javascript-quiz-using-json', function() {
 
     it('getQuizData() should return a array for JSON data from a HTTP request', function() {
         var promise = quiz.getQuizData(config.dataSource);
-        // TODO: needs to test a promise and xhr request!
-
         promise.then(function(data) {
-
+          expect(data).to.be.defined;
         }).catch(function(error) {
           expect(error).to.be.defined;
         })
@@ -214,17 +196,15 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('isValid() should valid the json data', function() {
-        var isValid = quiz.isValid();
+        var data = '[{"question": "What is my name?"}]';
+        var isValid = quiz.isValid(data);
         expect(isValid).to.be.true;
     });
 
     it('randomiseQuestions() should return a different array order', function() {
         var randomiseArray = quiz.randomiseQuestions([1,2,3,4,5,6]);
-
         expect(randomiseArray).to.be.an('array');
         expect(randomiseArray.length).to.equal(6);
     });
-
   });
-
 });

@@ -3,38 +3,38 @@
         "questions": [
             {
                 "question": "1. Question One",
-                "info": "Having a set spot on the sofa matters the most to those between 35 and 44, and the least to people over 55.",
+                "info": "Some information about question one.",
                 "options":
                   [
-                    "See that your friends have taken all the seats. No worries, you’d rather sit on the floor than ask someone to move ",
-                    "Sit in the nearest free space, you’re not picky",
-                    "Run to your spot. Everybody knows that’s where you sit and that’s how it will stay. How would watching TV ever be the same sat somewhere different?",
-                    "See that someone is in the spot you like. You try to convince them to move, but give in and sit elsewhere"
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
                   ],
                 "scores":
                   [
-                    4,
-                    3,
-                    1,
-                    2
+                    400,
+                    300,
+                    100,
+                    200
                   ]
             },
             {
                 "question": "2. Question Two",
-                "info": "Having a set spot on the sofa matters the most to those between 35 and 44, and the least to people over 55.",
+                "info": "Some information about question two.",
                 "options":
                   [
-                    "See that your friends have taken all the seats. No worries, you’d rather sit on the floor than ask someone to move ",
-                    "Sit in the nearest free space, you’re not picky",
-                    "Run to your spot. Everybody knows that’s where you sit and that’s how it will stay. How would watching TV ever be the same sat somewhere different?",
-                    "See that someone is in the spot you like. You try to convince them to move, but give in and sit elsewhere"
+                    "Option 1",
+                    "Option 2",
+                    "Option 3",
+                    "Option 4"
                   ],
                 "scores":
                   [
-                    4,
-                    3,
-                    1,
-                    2
+                    40,
+                    30,
+                    10,
+                    20
                   ]
             }
         ]
@@ -42,28 +42,28 @@
     {
         "results": [
             {
-                "title": "The Exhibitionist",
-                "description": "You are the king in your castle, and nothing will make you feel awkward in those four walls! You’re happy to walk around in the buff, go to the toilet with the door open, and you wouldn’t think twice about eating a slice of toast that you dropped on the floor. We congratulate you in your achievement, but advise you keep the curtains closed for your neighbour’s sake!",
+                "title": "Terrible Score",
+                "description": "Details",
                 "image": "./img/the-end.jpg",
                 "minScore": 0
             },
             {
-                "title": "The Occasional Strutter",
-                "description": "You don’t mind doing the occasional strut in your underwear to retrieve your jeans from the dryer, but you’d rather avoid it. You follow the ten-second rule when food drops on the floor, and you aren’t scared of the weird noises coming from the pipes, but you are still to master going to the toilet with the door open. You are so close to being completely comfortable in your surroundings but there is still as little way to go. To help bridge the gap, take a look at our simple guide to making your house a home.",
+                "title": "Poor Score",
+                "description": "Details",
                 "image": "./img/the-end.jpg",
-                "minScore": 11
+                "minScore": 2
             },
             {
-                "title": "The Mad Dasher",
-                "description": "You will only ever show flesh in the mad dash between your bathroom and bedroom, when you’re sure nobody is around. You’re likely to have a place reserved on the sofa, but there isn’t a chance you know which draw the Sellotape is in, or what your neighbour’s name is. There is still a lot of work to be done before you’re truly settled. To help you along the way, take a look at our guide to making your house a home.",
+                "title": "Good Score",
+                "description": "Details",
                 "image": "./img/the-end.jpg",
-                "minScore": 21
+                "minScore": 4
             },
             {
-                "title": "The Sock Lover",
-                "description": "You really don’t feel at home and you’re likely to feel risky just having your socks off! You don’t have a set spot on the sofa and you certainly don’t leave the door open when you go to the toilet. You have a long way to go before you will be hanging plants outside. Aside from cranking up the underfloor heating, start to feel comfy by checking out our guide to making your house a home.",
+                "title": "Brilliant Score",
+                "description": "Details",
                 "image": "./img/the-end.jpg",
-                "minScore": 31
+                "minScore": 6
             }
         ]
     }
