@@ -32,15 +32,10 @@
 		data: {}
 	};
 
-
 	function extend(defaults, options) {
-		// maybe use Object.assign here?! Current usage is impure.
-		// Object.keys(options).forEach((key)=> defaults[key] = options[key]);
 		return Object.assign({}, defaults, options);
-		//return defaults;
 	}
 
-	// TODO: validate JSON and provide user friendly messages.
 	function isValid(data) {
 		try {
 			JSON.parse(data);
@@ -122,7 +117,6 @@
 				renderTemplate('<p>The JSON data provided is not valid! Please check this and retry</p>', config.id);
 				return;
 			}
-
 			// should be moved.
 	    state.data = JSON.parse(data);
 			state.question.count = state.data[0].questions.length;
@@ -131,7 +125,6 @@
 	     	state.data = randomiseQuestions(data);
 	    }
 
-	    // dynamic dom element needs a handler to the on click event:
 	    bindSubmit(document);
 	    nextQuestion(state);
 	}
@@ -139,7 +132,6 @@
 	function end(state) {
 		let score = getScore(state.answers);
 		let message = resultMessage(score, state.data[1].results);
-
 		return `<h3>Quiz Complete</h3><h4>${message.title}</h4><p>${message.description}</p>
 		  <p>Your score was: ${score} questions: ${state.question.count}</p>`;
 	}

@@ -1,8 +1,4 @@
-
-
-# Javascript quiz using JSON
-:question: :question: :question: :question: :question: :question: :question: :question: :question:
-
+# Javascript quiz using JSON :star:
 
 [![Code Climate](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json/badges/gpa.svg?style=flat-square)](https://codeclimate.com/github/Matt-Webb/javascript-quiz-using-json)
 [![Build Status](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json.svg?branch=master&style=flat-square)](https://travis-ci.org/Matt-Webb/javascript-quiz-using-json)
@@ -14,7 +10,7 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assigned a score against each option, this allows for a range of scores for each question.
 
-### ALPHA [v0.3.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.3.0-alpha)
+### ALPHA [v0.4.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.4.0-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
@@ -70,16 +66,16 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 
 ### TO DO
 
-* [ ] Remove jquery dependency
-* [ ] ~~Abstract the rendered html question into templates for better customisation~~
 * [ ] Add optional style sheets
-* [ ] Move TODOs to issues with need-help flag
+* [ ] Add charts to result rendering
+* [ ] Add Automated Acceptance Tests
 * [ ] Set up semvar
+* [ ] Abstract the rendered html question into templates for better customisation
+* [x] Remove jquery dependency
+* [x] Move TODOs to issues with need-help flag
 * [x] Update Travis Build
 * [x] Add module bundler
 * [x] Add test coverage badge
-* [ ] Add Automated Acceptance Tests
-* [ ] Add charts to result rendering
 * [x] Refactor json data for better clarity e.g "answers" should be "options" etc.
 * [x] Configurate as bower package
 * [x] Remove Bower, Switch to npm
