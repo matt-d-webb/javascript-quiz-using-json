@@ -71,6 +71,8 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 * [ ] Add Automated Acceptance Tests
 * [ ] Set up semvar
 * [ ] Abstract the rendered html question into templates for better customisation
+* [ ] Add webpack bundler
+* [ ] Add as npm package
 * [x] Remove jquery dependency
 * [x] Move TODOs to issues with need-help flag
 * [x] Update Travis Build
