@@ -44,7 +44,9 @@
 		}
 		return true;
 	}
-
+        // TODO: 
+	// [1] convert to async / await 
+	// [2] make function testable (removing annoynmous functions)
 	function getQuizData(url) {
 		return new Promise((resolve, reject) => {
 			const xhr = new XMLHttpRequest();
@@ -69,12 +71,12 @@
 			xhr.send();
 		});
 	}
-
+        // FIXME: error prone.
 	function getScore(answers) {
 		if (!answers.length) return 0;
 		else return answers.reduce((acc, val) => acc + val);
 	}
-
+        // TODO: refactor out.
 	function updateScore(userAnswer) {
 		state.answers.push(userAnswer);
 	}
