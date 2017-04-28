@@ -9,7 +9,7 @@ This simple project which provides a clean API for rendering questions with mult
 
 Each question can be assigned a score, this allows for a range of scores for each question. The
 
-### ALPHA [v0.5.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.0-alpha)
+### ALPHA [v0.5.1](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.1-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 

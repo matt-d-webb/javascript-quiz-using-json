@@ -1,5 +1,5 @@
 /*
-      Version: 0.5.0-alpha
+      Version: 0.5.1-alpha
        Author: Matthew D Webb
   Description: javascript quiz using json
  */
@@ -7,7 +7,7 @@
 
 	'use strict';
 
-	const VERSION = '0.5.0-alpha';
+	const VERSION = '0.5.1-alpha';
 
 	let Quiz;
 	let TEST;
