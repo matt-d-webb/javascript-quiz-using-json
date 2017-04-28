@@ -7,7 +7,7 @@
     "test": "mocha",
     "watch:test": "npm t -- --watch",
     "validate": "npm run cover && npm run check-coverage",
-    "check-coverage": "nyc check-coverage --statements 10 --branches 10 --functions 10 --lines 10",
+    "check-coverage": "nyc check-coverage --statements 80 --branches 50 --functions 80 --lines 80",
     "report-coverage": "cat ./coverage/lcov.info | codecov",
     "cover": "nyc --reporter=lcov npm t",
     "start": "python -m SimpleHTTPServer"

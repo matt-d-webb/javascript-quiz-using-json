@@ -44,8 +44,8 @@
 		}
 		return true;
 	}
-        // TODO: 
-	// [1] convert to async / await 
+        // TODO:
+	// [1] convert to async / await
 	// [2] make function testable (removing annoynmous functions)
 	function getQuizData(url) {
 		return new Promise((resolve, reject) => {
@@ -73,8 +73,11 @@
 	}
         // FIXME: error prone.
 	function getScore(answers) {
-		if (!answers.length) return 0;
-		else return answers.reduce((acc, val) => acc + val);
+		if (answers && answers.length > -1) {
+			return answers.reduce((acc, val) => acc + val);
+		} else {
+			return 0;
+		}
 	}
         // TODO: refactor out.
 	function updateScore(userAnswer) {
@@ -83,7 +86,7 @@
 
 	function getTemplate(questions, currentQuestion) {
 		// End of Quiz?
-		if (currentQuestion === state.question.count) {
+		if (state.question.count === currentQuestion) {
 			return end(state);
 		// Next Question
 		} else {
@@ -104,7 +107,7 @@
 		return questions;
 	}
 
-	function nextQuestion(state) {
+	function nextQuestion(state, config) {
 		const questions = state.data[0].questions;
 		const currentQ = state.question.current;
 		const template = getTemplate(questions, currentQ);
@@ -113,7 +116,7 @@
 		renderTemplate(template, config.id);
 	}
 
-	function start(data) {
+	function start(data, config, state) {
 
 	    if (!isValid(data)) {
 				renderTemplate('<p>The JSON data provided is not valid! Please check this and retry</p>', config.id);
@@ -124,11 +127,11 @@
 			state.question.count = state.data[0].questions.length;
 
 	    if (config.random === true) {
-	     	state.data = randomiseQuestions(data);
+	     	state.data = randomiseQuestions(state.data);
 	    }
 
 	    bindSubmit(document);
-	    nextQuestion(state);
+	    nextQuestion(state, config);
 	}
 
 	function end(state) {
@@ -198,7 +201,7 @@
 					const radios = document.getElementsByName('quizAnswer');
 					const answer = parseInt(Array.from(radios).find((r, i) => radios[i].checked).value);
 					updateScore(answer);
-        	nextQuestion(state);
+        	nextQuestion(state, config);
 			}
 		});
 	}
@@ -219,7 +222,7 @@
 		getQuizData(config.dataSource).then(success, error);
 
 		function success(data) {
-			start(data, 0);
+			start(data, config, state);
 		}
 
 		function error(err) {

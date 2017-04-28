@@ -21,7 +21,7 @@ describe('javascript-quiz-using-json', function() {
       dataSource: './data/valid.questions.json',
       loadingGif: null,
       id: 'quiz',
-      randomise: false
+      random: true
     };
 
     data = [{
@@ -51,7 +51,7 @@ describe('javascript-quiz-using-json', function() {
 
     state = {
       	"question": {
-      		"current": 0,
+      		"current": 1,
       		"count": 0
       	},
       	"answers": [2,3,1],
@@ -69,7 +69,7 @@ describe('javascript-quiz-using-json', function() {
         expect(quiz).to.be.a('object');
     });
 
-    it('Should have 16 private methods', function() {
+    it('Should have 18 private methods', function() {
         expect(Object.keys(quiz).length).to.equal(18);
     });
 
@@ -95,6 +95,11 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('getTemplate() should return a valid template', function() {
+      var template = quiz.getTemplate(data, 1);
+      expect(template).to.be.a('string');
+    });
+
+    it('getTemplate() should return a valid end template', function() {
       var template = quiz.getTemplate(data, 1);
       expect(template).to.be.a('string');
     });
@@ -128,10 +133,22 @@ describe('javascript-quiz-using-json', function() {
   describe('Core functionality', function() {
 
     it('init() should initialse the quiz with the correct first question', function() {
+        var options = { seed: true };
+        quiz.init(options);
         expect(quiz.init).to.be.a('function');
     });
 
+    it('start() should not update the question array', function() {
+        quiz.start(data, config, state);
+        expect(quiz.start).to.be.a('function');
+    });
+
     it('start() should update the question array', function() {
+
+        var _data = '[{"questions":[{"question":"1. Question One","info":"info","options":["Option 1","Option 2","Option 3","Option 4"],"scores":[400,300,100,200]},{"question":"2. Question Two","info":"info","options":["Option 1","Option 2","Option 3","Option 4"],"scores":[40,30,10,20]}]},{"results":[{"title":"Terrible Score","description":"Details","image":"./img/the-end.jpg","minScore":0},{"title":"Poor Score","description":"Details","image":"./img/the-end.jpg","minScore":2},{"title":"Good Score","description":"Details","image":"./img/the-end.jpg","minScore":4},{"title":"Brilliant Score","description":"Details","image":"./img/the-end.jpg","minScore":6}]}]';
+        quiz.start(_data, config, state);
+        expect(config.random).to.be.true;
+        expect(state).to.be.defined;
         expect(quiz.start).to.be.a('function');
     });
 
@@ -142,11 +159,19 @@ describe('javascript-quiz-using-json', function() {
     });
 
     it('bindSubmit() should add an event listener to the DOM', function() {
+        quiz.bindSubmit(document);
         expect(quiz.bindSubmit).to.be.a('function');
     });
 
     it('nextQuestion() should iterate through the array of questions', function() {
         expect(quiz.nextQuestion).to.be.a('function');
+    });
+
+    it('nextQuestion() increment the next question', function() {
+        var _state = state;
+        _state.question.current = 1;
+        quiz.nextQuestion(_state, config);
+        expect(state.question.current).to.equal(2);
     });
 
   });
@@ -157,7 +182,9 @@ describe('javascript-quiz-using-json', function() {
 
     before(function () {
         xhr = sinon.useFakeXMLHttpRequest();
-        xhr.onload = function (req) { data = req; };
+        xhr.onload = function onload(req) { data = req; };
+        xhr.onerror = function onerror(err) { return err };
+        xhr.send = function noob() { };
     });
 
     after(function () {
@@ -185,21 +212,40 @@ describe('javascript-quiz-using-json', function() {
         })
     });
 
+    // it('getQuizData() error', function() {
+    //   var promise = quiz.getQuizData('dodgy-url.x');
+    //   var error = sinon.spy(xhr, 'onerror');
+    //   // promise.then(function() {}).catch(function(error) {
+    //   //   sinon.assert.calledOnce(error);
+    //   // });
+    // });
+
     it('getScore() should return the correct score', function() {
         var score = quiz.getScore(state.answers);
         expect(score).to.equal(6);
     });
+
+    it('getScore() should return 0 if length is undefined', function() {
+      var score = quiz.getScore(undefined);
+      expect(score).to.equal(0);
+    })
 
     it('updateScore() should increment the correct score to the score array', function() {
         quiz.updateScore(1000);
         expect(quiz.state.answers).to.contain(1000);
     });
 
-    it('isValid() should valid the json data', function() {
+    it('isValid() should validate the json data if it is valid', function() {
         var data = '[{"question": "What is my name?"}]';
         var isValid = quiz.isValid(data);
         expect(isValid).to.be.true;
     });
+
+    it('isValid() should invalidate the json date if it is invalid', function() {
+      var data = '[{"question" : "This is Invalud"},]';
+      var isValid = quiz.isValid(data);
+      expect(isValid).to.be.false;
+    })
 
     it('randomiseQuestions() should return a different array order', function() {
         var randomiseArray = quiz.randomiseQuestions([1,2,3,4,5,6]);
