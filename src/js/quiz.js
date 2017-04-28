@@ -7,7 +7,7 @@
 
 	'use strict';
 
-	const VERSION = '0.4.0-alpha';
+	const VERSION = '0.5.0-alpha';
 
 	let Quiz;
 	let TEST;
@@ -236,7 +236,6 @@
 	// --------------------------------------------------------------------//
 	// ----------------- PRIVATE API (TESTING ONLY) -----------------------//
 	// --------------------------------------------------------------------//
-
 	TEST = {
 		VERSION,
 		state,
@@ -266,9 +265,7 @@
 		init
 	};
 
-	// --- test-only ---------
 	Quiz.__TEST__ = TEST;
-	// --- end-test-only --------
 
 	return Quiz;
 

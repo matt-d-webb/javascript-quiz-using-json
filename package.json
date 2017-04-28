@@ -2,7 +2,6 @@
   "name": "javascript-quiz-using-json",
   "version": "0.5.0-alpah",
   "description": "JavaScript Quiz Using JSON",
-  "main": "index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "npm-run-all --parallel build:*",
@@ -37,7 +36,8 @@
     "nyc": "7.1.0",
     "rimraf": "2.5.4",
     "sinon": "^2.1.0",
-    "webpack": "^2.4.1"
+    "webpack": "^2.4.1",
+    "webpack-strip-block": "^0.1.1"
   },
   "engines": {
     "node": "6.x",
