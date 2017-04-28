@@ -5,16 +5,37 @@
 [![codecov](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json)
 [![devDependencies Status](https://david-dm.org/Matt-Webb/javascript-quiz-using-json/dev-status.svg)](https://david-dm.org/Matt-Webb/javascript-quiz-using-json?type=dev)
 
-This code enables you to render questions with optional answers as multiple choice. The data is loaded using [valid JSON](http://jsonlint.com/)
-you can provide a list of questions and answers which will render to the user in sequence or at random.
+This simple project which provides a clean API for rendering questions with multiple choice answer. The data is loaded using [valid JSON](http://jsonlint.com/) and gave be retrieved from any end point which can return the data in the desirable format.
 
-Each question can be assigned a score against each option, this allows for a range of scores for each question.
+Each question can be assigned a score, this allows for a range of scores for each question. The
 
 ### ALPHA [v0.5.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.0-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
 
+#### Via NPM
+
+`npm i javascript-quiz-using-json`
+
 #### How to use:
+
+Add the following HTML into your page:
+
+**HTML**
+
+    <!-- dom reference -->
+    <div id="quizName"></div>
+
+    <!-- quiz package -->
+    <script src="./javascript-quiz-using-json/dist/quiz.umd.min.js"></script>
+
+**JAVASCRIPT**
+
+Basic initialisation.
+
+    Quiz.init({ id: "quizName" });  
+
+_Note: this needs to be done after referencing the script shown above._
 
 **Sample JSON**
 
@@ -34,23 +55,29 @@ Here is a sample of the quiz question data:
             [0,3,1,2]
       }
 
-**HTML**
+## CONFIGURATIONS
 
-    <!-- dom reference -->
-    <div id="quizName"></div>
+    var configurations = {
+      id: 'quizName',                  // the element reference within the DOM
+      dataSource: './data.json',       // the json quiz data location
+      randomise: 'false',              // randomise the order of the questions to the user
+      loadingGif: './img/loading.gif', // loading image between rendering
+    };
 
-    <!-- script -->
-    <script src="./javascript-quiz-using-json/dist/quiz.umd.min.js"></script>
+    Quiz.init(configurations);
 
-**JAVASCRIPT**
-
-Initialise the quiz like so. Note this needs to be done after referencing the script shown above.
-
-    Quiz.init({ id: "quizName" });  
 
 **HOW TO INSTALL**
 
+Pull the package from npm:
+
+`$ npm i javascript-quiz-using-json --save`
+
+Install dev dependancies:
+
 `$ npm install`
+
+Build the package:
 
 `$ npm run build`
 

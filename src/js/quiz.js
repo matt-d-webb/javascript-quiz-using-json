@@ -1,7 +1,7 @@
 /*
       Version: 0.5.0-alpha
        Author: Matthew D Webb
-  Description: json quiz score calculator
+  Description: javascript quiz using json
  */
 (function (global, document) {
 
@@ -23,6 +23,7 @@
 		seed: false
 	};
 
+  // keeps track of the current state
 	let state = {
 		question: {
 			current: 0,

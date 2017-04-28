@@ -1,6 +1,6 @@
 {
   "name": "javascript-quiz-using-json",
-  "version": "0.5.0-alpah",
+  "version": "0.5.0-alpha",
   "description": "JavaScript Quiz Using JSON",
   "scripts": {
     "prebuild": "rimraf dist",
