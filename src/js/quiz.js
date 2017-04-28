@@ -1,5 +1,5 @@
 /*
-      Version: 0.4.0-alpha
+      Version: 0.5.0-alpha
        Author: Matthew D Webb
   Description: json quiz score calculator
  */
@@ -44,7 +44,7 @@
 		}
 		return true;
 	}
-        // TODO:
+  // TODO:
 	// [1] convert to async / await
 	// [2] make function testable (removing annoynmous functions)
 	function getQuizData(url) {
@@ -79,7 +79,7 @@
 			return 0;
 		}
 	}
-        // TODO: refactor out.
+  // TODO: refactor out.
 	function updateScore(userAnswer) {
 		state.answers.push(userAnswer);
 	}
@@ -118,7 +118,7 @@
 
 	function start(data, config, state) {
 
-	    if (!isValid(data)) {
+	    if (isValid(data) === false) {
 				renderTemplate('<p>The JSON data provided is not valid! Please check this and retry</p>', config.id);
 				return;
 			}

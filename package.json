@@ -1,10 +1,15 @@
 {
   "name": "javascript-quiz-using-json",
-  "version": "0.3.0-alpah",
-  "description": "JavaScript Quiz",
+  "version": "0.5.0-alpah",
+  "description": "JavaScript Quiz Using JSON",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "babel --copy-files --out-dir dist src",
+    "build:umd": "webpack --output-filename quiz.umd.js",
+    "build:umd.min": "webpack --output-filename quiz.umd.min.js -p",
+    "test": "mocha --compilers js:babel-register",
     "watch:test": "npm t -- --watch",
     "validate": "npm run cover && npm run check-coverage",
     "check-coverage": "nyc check-coverage --statements 80 --branches 50 --functions 80 --lines 80",
@@ -18,6 +23,11 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.24.1",
     "chai": "^3.5.0",
     "codecov": "2.1.0",
     "jsdom": "9.12.0",
@@ -25,7 +35,9 @@
     "mocha": "^3.2.0",
     "npm-run-all": "2.3.0",
     "nyc": "7.1.0",
-    "sinon": "^2.1.0"
+    "rimraf": "2.5.4",
+    "sinon": "^2.1.0",
+    "webpack": "^2.4.1"
   },
   "engines": {
     "node": "6.x",
@@ -40,5 +52,11 @@
   "bugs": {
     "url": "https://github.com/Matt-Webb/jquery-quiz-using-json/issues"
   },
-  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme"
+  "homepage": "https://github.com/Matt-Webb/jquery-quiz-using-json#readme",
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-2"
+    ]
+  }
 }

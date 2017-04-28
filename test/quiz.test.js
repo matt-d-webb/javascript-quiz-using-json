@@ -1,18 +1,17 @@
 "use strict";
 
-var mocha = require('mocha');
-var chai = require('chai');
-var sinon = require('sinon');
-var expect = chai.expect;
+const chai = require('chai');
+const sinon = require('sinon');
+const expect = chai.expect;
 
-describe('javascript-quiz-using-json', function() {
+describe('javascript-quiz-using-json', () => {
 
   var Quiz, jsdom, quiz, version, config, state, data;
 
-  before(function() {
+  before(() => {
 
     jsdom = require('jsdom-global')();
-    Quiz = require('../js/quiz');
+    Quiz = require('../src/js/quiz');
 
     quiz = window.Quiz.__TEST__;
     version = '0.4.0-alpha';
@@ -59,13 +58,14 @@ describe('javascript-quiz-using-json', function() {
       };
   });
 
-  after(function () {
+  after(() => {
     jsdom();
   });
 
   describe('Quiz', function() {
 
     it('Should be defined', function() {
+        expect(window.Quiz).to.be.defined;
         expect(quiz).to.be.a('object');
     });
 

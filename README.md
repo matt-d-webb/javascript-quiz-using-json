@@ -10,11 +10,9 @@ you can provide a list of questions and answers which will render to the user in
 
 Each question can be assigned a score against each option, this allows for a range of scores for each question.
 
-### ALPHA [v0.4.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.4.0-alpha)
+### ALPHA [v0.5.0](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.0-alpha)
 
 This project is currently in ALPHA and activity being worked on. Contributions are welcome!
-
-test
 
 #### How to use:
 
@@ -42,7 +40,7 @@ Here is a sample of the quiz question data:
     <div id="quizName"></div>
 
     <!-- script -->
-    <script src="./javascript-quiz-using-json/dist/quiz.min.js"></script>
+    <script src="./javascript-quiz-using-json/dist/quiz.umd.min.js"></script>
 
 **JAVASCRIPT**
 
@@ -53,6 +51,10 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 **HOW TO INSTALL**
 
 `$ npm install`
+
+`$ npm run build`
+
+This will generate the files in the the `dist` folder, i.e. `dist/quiz.umd.min.js`
 
 ### [CONTRIBUTING](./CONTRIBUTE.md)
 
@@ -71,8 +73,8 @@ Initialise the quiz like so. Note this needs to be done after referencing the sc
 * [ ] Add Automated Acceptance Tests
 * [ ] Set up semvar
 * [ ] Abstract the rendered html question into templates for better customisation
-* [ ] Add webpack bundler
 * [ ] Add as npm package
+* [x] Add webpack bundler
 * [x] Remove jquery dependency
 * [x] Move TODOs to issues with need-help flag
 * [x] Update Travis Build

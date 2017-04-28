@@ -1,11 +1,11 @@
 /*
        Author: Matthew D Webb
-  Description: json quiz score calculator
+  Description: Javascript Quiz Using JSON
  */
 
-/*  default json quiz styles */
+/* sample css */
 
- #quizForm {
+#quizForm {
     border: 2px dotted;
     border-color: #BCBCBC;
     background: #F1F1F1;
