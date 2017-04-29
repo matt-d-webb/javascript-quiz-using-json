@@ -5,13 +5,13 @@
 [![codecov](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json/branch/master/graph/badge.svg)](https://codecov.io/gh/Matt-Webb/javascript-quiz-using-json)
 [![devDependencies Status](https://david-dm.org/Matt-Webb/javascript-quiz-using-json/dev-status.svg)](https://david-dm.org/Matt-Webb/javascript-quiz-using-json?type=dev)
 
-This simple project which provides a clean API for rendering questions with multiple choice answer. The data is loaded using [valid JSON](http://jsonlint.com/) and gave be retrieved from any end point which can return the data in the desirable format.
+This simple project provides a clean API for rendering quiz questions with multiple choice answers. The data is supplied using [valid JSON](http://jsonlint.com/) and can be retrieved from any url end point which returns the data in the desirable format (see sample data).
 
-Each question can be assigned a score, this allows for a range of scores for each question. The
+Each question is assigned a score, this allows for a range of scores for each question or a specific answer.
 
-### ALPHA [v0.5.1](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.1-alpha)
+###[v0.5.1](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.1-alpha)-Alpha
 
-This project is currently in ALPHA and activity being worked on. Contributions are welcome!
+This project is currently in [ALPHA](https://github.com/Matt-Webb/javascript-quiz-using-json/tree/v0.5.1-alpha) and activity being worked on. [Contributions](./CONTRIBUTE.md) are welcome!
 
 #### Via NPM
 
@@ -95,7 +95,7 @@ This will generate the files in the the `dist` folder, i.e. `dist/quiz.umd.min.j
 
 ### TO DO
 
-* [ ] Add optional style sheets
+* [ ] Add optional style sheets / using material design / bootstrap
 * [ ] Add charts to result rendering
 * [ ] Add Automated Acceptance Tests
 * [ ] Set up semvar
